@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kevin Lu — Academic Website</title>
+  <meta name="description" content="Research, publications, talks, teaching, and projects." />
+  <meta property="og:title" content="Kevin Lu — Academic Website" />
+  <meta property="og:description" content="Research, publications, talks, teaching, and projects." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #0b0c0f;
+      --fg: #e6e8ee;
+      --muted: #aab0c0;
+      --card: #13151b;
+      --accent: #7aa2ff;
+      --link: #9ad1ff;
+      --maxw: 1024px;
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#f9fbff; --fg:#0b0c0f; --muted:#475064; --card:#ffffff; --accent:#335dff; --link:#0b6bcb; }
+    }
+    html { color-scheme: light dark; }
+    body { margin:0; font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg); color:var(--fg); }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+    header { position: sticky; top: 0; backdrop-filter: blur(6px); background: color-mix(in oklab, var(--bg) 86%, transparent); border-bottom: 1px solid color-mix(in oklab, var(--fg) 10%, transparent); }
+    header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    nav a { margin-left: 16px; font-weight: 600; }
+    .hero { display:grid; grid-template-columns: 1.2fr 1fr; gap: 24px; padding-top: 28px; }
+    .card { background: var(--card); border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent); border-radius: var(--radius); padding: 20px; }
+    h1 { font-size: clamp(22px, 3.2vw, 32px); line-height: 1.25; margin: 12px 0 8px; }
+    h2 { font-size: clamp(20px, 2.6vw, 28px); margin: 28px 0 8px; }
+    h3 { font-size: 18px; margin: 18px 0 6px; }
+    .muted { color: var(--muted); }
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-2 { display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .kicker { letter-spacing: .12em; text-transform: uppercase; font-size: 12px; color: var(--muted); }
+    .tag { display:inline-block; padding: 2px 8px; border-radius: 999px; background: color-mix(in oklab, var(--accent) 20%, transparent); border:1px solid color-mix(in oklab, var(--accent) 35%, transparent); font-size:12px; margin-right: 6px; }
+    .list { list-style: none; padding: 0; margin: 0; }
+    .list li { padding: 12px 0; border-bottom: 1px solid color-mix(in oklab, var(--fg) 10%, transparent); }
+    .row { display:flex; align-items:center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .btn { display:inline-block; padding:10px 14px; border-radius: 12px; background: var(--accent); color: white; font-weight: 700; }
+    .btn.ghost { background: transparent; border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent); color: var(--fg); }
+    footer { margin: 40px 0 24px; color: var(--muted); }
+    .profile-photo { max-width: 160px; border-radius: 50%; display:block; margin: 0 auto 16px; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid, .grid-2 { grid-template-columns: 1fr; }
+      nav a { margin-left: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div style="font-weight:800">Kevin&nbsp;Lu</div>
+      <nav>
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#talks">Talks</a>
+        <a href="#teaching">Teaching</a>
+        <a href="cv.pdf">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="card">
+        <div class="kicker">About</div>
+        <img src="photo.jpg" alt="Kevin Lu" class="profile-photo" />
+        <h1>ML + Mechanistic Interpretability for Biology</h1>
+        <p class="muted">I work on mechanistic interpretability for diffusion & protein language models. Currently a co-op at Takeda Pharmaceuticals. Interests: SAEs, interpretability of ESM-2/ESMFold, antibody/TCR design.</p>
+        <div class="row" style="margin-top:12px">
+          <a class="btn" href="mailto:lu.kev@northeastern.edu">Contact</a>
+          <a class="btn ghost" href="https://github.com/kevinlu4588" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/kevin-lu-4588-/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="kicker">News</div>
+        <ul class="list" id="news">
+          <li><strong>Sep 2025</strong> — Our paper <em>When Are Concepts Erased From Diffusion Models?</em> accepted to NeurIPS (poster).</li>
+          <li><strong>Jul 2025</strong> — Started co-op at Takeda; focusing on PLM interpretability for antibodies/TCR.</li>
+          <li><strong>May 2025</strong> — Presented at RISE research expo (Northeastern × HMS).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="publications" style="margin-top: 28px;">
+      <h2>Publications</h2>
+      <div id="pubs" class="card" style="margin-top: 12px"></div>
+      <div class="muted" style="margin-top:8px">Publications are loaded from <code>publications.json</code> (or the inline fallback below). Replace with your own.</div>
+
+      <script id="pubs-fallback" type="application/json">{
+        "entries": [
+          {
+            "title": "When Are Concepts Erased From Diffusion Models?",
+            "authors": ["Kevin Lu", "Coauthors"],
+            "venue": "NeurIPS 2025 (Poster)",
+            "year": 2025,
+            "paper": "#",
+            "code": "#",
+            "arxiv": "#",
+            "tags": ["diffusion", "interpretability", "unlearning"]
+          },
+          {
+            "title": "To Bind or Not to Bind: Layer-wise Probing of ESM",
+            "authors": ["Kevin Lu", "Coauthors"],
+            "venue": "Workshop 2025",
+            "year": 2025,
+            "paper": "#",
+            "code": "#",
+            "tags": ["proteins", "ESM", "probing"]
+          }
+        ]
+      }</script>
+    </section>
+
+    <footer>
+      <div class="row">
+        <div>© <span id="year"></span> Kevin Lu</div>
+        <div class="muted">Built with plain HTML/CSS/JS</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const $$ = (sel, el=document) => el.querySelector(sel);
+    const pubsEl = $$("#pubs");
+
+    async function loadPublications() {
+      try {
+        const res = await fetch('publications.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('No external publications.json');
+        const data = await res.json();
+        return data.entries ?? [];
+      } catch (e) {
+        const inline = $$("#pubs-fallback").textContent;
+        try { return JSON.parse(inline).entries ?? []; } catch { return []; }
+      }
+    }
+
+    function renderPublications(items) {
+      const groups = new Map();
+      for (const p of items) {
+        const y = p.year || '—';
+        if (!groups.has(y)) groups.set(y, []);
+        groups.get(y).push(p);
+      }
+
+      const out = [];
+      for (const [year, arr] of groups) {
+        out.push(`<div class="kicker" style="margin-top:6px">${year}</div>`);
+        for (const p of arr) {
+          const authors = (p.authors||[]).join(', ');
+          const links = [ ['paper', p.paper], ['arxiv', p.arxiv], ['code', p.code] ]
+            .filter(([,href]) => href && href !== '#')
+            .map(([label, href]) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`)
+            .join(' · ');
+          const tags = (p.tags||[]).map(t=>`<span class="tag">${t}</span>`).join(' ');
+          out.push(`
+            <div style="padding:14px 0;border-bottom:1px solid color-mix(in oklab, var(--fg) 10%, transparent)">
+              <div style="font-weight:700">${p.title}</div>
+              <div class="muted">${authors}${p.venue?` — ${p.venue}`:''}</div>
+              <div class="row" style="margin-top:6px">
+                <div>${tags}</div>
+                <div>${links}</div>
+              </div>
+            </div>
+          `);
+        }
+      }
+      pubsEl.innerHTML = out.join('') || '<div class="muted">No publications found.</div>';
+    }
+
+    (async () => {
+      const items = await loadPublications();
+      renderPublications(items);
+      $$("#year").textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

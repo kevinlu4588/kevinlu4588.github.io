@@ -8,19 +8,20 @@
   <meta property="og:title" content="Kevin Lu — Academic Website" />
   <meta property="og:description" content="Research, publications, talks, teaching, and projects." />
   <meta property="og:type" content="website" />
+  <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
   <style>
     :root {
-      --bg: #0b0c0f;
-      --fg: #e6e8ee;
-      --muted: #aab0c0;
-      --card: #13151b;
-      --accent: #7aa2ff;
-      --link: #9ad1ff;
+      --bg: #f5f7f5;
+      --fg: #1a1f1a;
+      --muted: #5a6b5a;
+      --card: #ffffff;
+      --accent: #4a7c59;
+      --link: #2d5940;
       --maxw: 1024px;
       --radius: 16px;
     }
-    @media (prefers-color-scheme: light) {
-      :root { --bg:#f9fbff; --fg:#0b0c0f; --muted:#475064; --card:#ffffff; --accent:#335dff; --link:#0b6bcb; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#0f1410; --fg:#e8ede8; --muted:#a0b0a0; --card:#1a1f1a; --accent:#6b9d7a; --link:#8bc09f; }
     }
     html { color-scheme: light dark; }
     body { margin:0; font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg); color:var(--fg); }
@@ -30,7 +31,7 @@
     header { position: sticky; top: 0; backdrop-filter: blur(6px); background: color-mix(in oklab, var(--bg) 86%, transparent); border-bottom: 1px solid color-mix(in oklab, var(--fg) 10%, transparent); }
     header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     nav a { margin-left: 16px; font-weight: 600; }
-    .hero { display:grid; grid-template-columns: 1.2fr 1fr; gap: 24px; padding-top: 28px; }
+    .hero { display:grid; grid-template-columns: 0.8fr 1.2fr 1fr; gap: 24px; padding-top: 28px; }
     .card { background: var(--card); border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent); border-radius: var(--radius); padding: 20px; }
     h1 { font-size: clamp(22px, 3.2vw, 32px); line-height: 1.25; margin: 12px 0 8px; }
     h2 { font-size: clamp(20px, 2.6vw, 28px); margin: 28px 0 8px; }
@@ -46,13 +47,25 @@
     .btn { display:inline-block; padding:10px 14px; border-radius: 12px; background: var(--accent); color: white; font-weight: 700; }
     .btn.ghost { background: transparent; border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent); color: var(--fg); }
     footer { margin: 40px 0 24px; color: var(--muted); }
-    .profile-photo { max-width: 160px; border-radius: 50%; display:block; margin: 0 auto 16px; }
+    .profile-photo { width: 220px; height: 220px; border-radius: 50%; display:block; margin: 0 auto 16px; object-fit: cover; }
+    .profile-section { display: flex; flex-direction: column; align-items: center; }
+    .icon-links { display: flex; gap: 12px; margin-top: 16px; }
+    .icon-links a { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: var(--accent); color: white; font-weight: 700; text-decoration: none; }
+    .icon-links a.ghost { background: transparent; border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent); color: var(--fg); }
 
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
       .grid, .grid-2 { grid-template-columns: 1fr; }
       nav a { margin-left: 10px; }
     }
+    .visualization-container { width: 100%; height: 400px; background: var(--card); border-radius: var(--radius); position: relative; }
+    .controls { margin-top: 12px; }
+    .progress-bar { width: 100%; height: 8px; background: color-mix(in oklab, var(--fg) 10%, transparent); border-radius: 4px; cursor: pointer; position: relative; }
+    .progress-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.1s; }
+    .control-buttons { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
+    .control-btn { padding: 6px 12px; border-radius: 8px; background: var(--accent); color: white; border: none; cursor: pointer; font-weight: 600; font-size: 14px; }
+    .control-btn:hover { opacity: 0.8; }
+    .frame-label { color: var(--muted); font-size: 14px; margin-left: auto; }
   </style>
 </head>
 <body>
@@ -60,10 +73,7 @@
     <div class="wrap">
       <div style="font-weight:800">Kevin&nbsp;Lu</div>
       <nav>
-        <a href="#publications">Publications</a>
-        <a href="#projects">Projects</a>
-        <a href="#talks">Talks</a>
-        <a href="#teaching">Teaching</a>
+        <a href="#Publications & Presentations">Publications</a>
         <a href="cv.pdf">CV</a>
       </nav>
     </div>
@@ -71,29 +81,50 @@
 
   <main class="wrap">
     <section class="hero">
-      <div class="card">
-        <div class="kicker">About</div>
-        <img src="photo.jpg" alt="Kevin Lu" class="profile-photo" />
-        <h1>ML + Mechanistic Interpretability for Biology</h1>
-        <p class="muted">I work on mechanistic interpretability for diffusion & protein language models. Currently a co-op at Takeda Pharmaceuticals. Interests: SAEs, interpretability of ESM-2/ESMFold, antibody/TCR design.</p>
-        <div class="row" style="margin-top:12px">
-          <a class="btn" href="mailto:lu.kev@northeastern.edu">Contact</a>
-          <a class="btn ghost" href="https://github.com/kevinlu4588" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/kevin-lu-4588-/" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="profile-section">
+        <img src="PFP.png" alt="Kevin Lu" class="profile-photo" />
+        <h1 style="font-size: clamp(32px, 5vw, 48px); text-align: center; margin: 0;">Kevin Lu</h1>
+        <div class="icon-links">
+          <a href="mailto:lu.kev@northeastern.edu" title="Contact">✉️</a>
+          <a href="https://github.com/kevinlu4588" target="_blank" rel="noopener" title="GitHub" class="ghost">GH</a>
+          <a href="https://www.linkedin.com/in/kevin-lu-4588-/" target="_blank" rel="noopener" title="LinkedIn" class="ghost">in</a>
         </div>
       </div>
       <div class="card">
+        <h2 style="margin-top: 8px;">ML + Mechanistic Interpretability for Biology</h2>
+        <p class="muted">I work on mechanistic interpretability for diffusion & protein language models. Currently a co-op at Takeda Pharmaceuticals. Interests: SAEs, interpretability of ESM-2/ESMFold, antibody/TCR design.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">Protein Folding Animation</div>
+        <div class="controls">
+          <div class="progress-bar" id="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="control-buttons">
+            <button class="control-btn" id="play-btn">Play</button>
+            <button class="control-btn" id="reset-btn">Reset</button>
+            <span class="frame-label" id="frame-label">Frame 0/191</span>
+          </div>
+        </div>
+        <div id="protein-viewer" class="visualization-container"></div>
+      </div>
+    </section>
+
+    <section style="margin-top: 16px;">
+      <div class="card">
         <div class="kicker">News</div>
         <ul class="list" id="news">
-          <li><strong>Sep 2025</strong> — Our paper <em>When Are Concepts Erased From Diffusion Models?</em> accepted to NeurIPS (poster).</li>
-          <li><strong>Jul 2025</strong> — Started co-op at Takeda; focusing on PLM interpretability for antibodies/TCR.</li>
-          <li><strong>May 2025</strong> — Presented at RISE research expo (Northeastern × HMS).</li>
+          <li><strong>Sep 2025</strong> — Our paper <em>When are concepts erased from diffusion models?</em> accepted to NeurIPS Main Track!</li>
+          <li><strong>Aug 2025</strong> — Served as a reviewer for NeurIPS Mechanistic Interpretability Workshop.</li>
+          <li><strong>Aug 2025</strong> — Presented <em>To Bind or Not to Bind: A Layer-Wise Dissection of Binding Information in ESM</em> at New England Mech Interp (NEMI) Workshop.</li>
+          <li><strong>Jul 2025</strong> — Started co-op at Takeda Pharmaceuticals: focusing on PLM interpretability for antibody protein design.</li>
+          <li><strong>Jun 2025</strong> — Presented <em>Where do concepts go in diffusion models?</em> CVPR Generative Models for Computer Vision Workshop and Visual Concepts Workshop!</li>
         </ul>
       </div>
     </section>
 
-    <section id="publications" style="margin-top: 28px;">
-      <h2>Publications</h2>
+    <section id="Publications & Presentations" style="margin-top: 28px;">
+      <h2>Publications & Presentations</h2>
       <div id="pubs" class="card" style="margin-top: 12px"></div>
       <div class="muted" style="margin-top:8px">Publications are loaded from <code>publications.json</code> (or the inline fallback below). Replace with your own.</div>
 
@@ -101,21 +132,21 @@
         "entries": [
           {
             "title": "When Are Concepts Erased From Diffusion Models?",
-            "authors": ["Kevin Lu", "Coauthors"],
+            "authors": ["Kevin Lu", "Nicky Kriplani", "Rohit Gandikota", "Minh Pham", "David Bau", "Chinmay Hegde", "Niv Cohen"],
             "venue": "NeurIPS 2025 (Poster)",
             "year": 2025,
             "paper": "#",
-            "code": "#",
-            "arxiv": "#",
+            "code": "https://github.com/kevinlu4588/DiffusionConceptErasure",
+            "arxiv": "https://arxiv.org/abs/2505.17013",
             "tags": ["diffusion", "interpretability", "unlearning"]
           },
           {
             "title": "To Bind or Not to Bind: Layer-wise Probing of ESM",
-            "authors": ["Kevin Lu", "Coauthors"],
+            "authors": ["Kevin Lu"],
             "venue": "Workshop 2025",
             "year": 2025,
             "paper": "#",
-            "code": "#",
+            "code": "https://github.com/kevinlu4588/ESMProbing",
             "tags": ["proteins", "ESM", "probing"]
           }
         ]
@@ -184,6 +215,134 @@
       renderPublications(items);
       $$("#year").textContent = new Date().getFullYear();
     })();
+
+    // Protein folding animation
+    let viewer = null;
+    let currentFrame = 0;
+    const startFrame = 0;
+    const endFrame = 191;
+    const totalFrames = 192;
+    const trailLength = 5; // Number of previous frames to show
+    const frameCache = {}; // Cache loaded PDB data
+    let animationInterval = null;
+    let isPlaying = false;
+
+    function initProteinViewer() {
+      const element = $$("#protein-viewer");
+      const config = { backgroundColor: 'white' };
+      viewer = $3Dmol.createViewer(element, config);
+      viewer.resize();
+
+      // Preload all frames
+      const promises = [];
+      for (let i = startFrame; i <= endFrame; i++) {
+        const frameStr = String(i).padStart(2, '0');
+        promises.push(
+          fetch(`pdb_files_aligned/fold_block_${frameStr}.pdb`)
+            .then(res => res.text())
+            .then(data => { frameCache[i] = data; })
+        );
+      }
+
+      Promise.all(promises).then(() => {
+        loadFrameWithTrail(currentFrame);
+        viewer.zoomTo(); // Zoom once at the start
+        viewer.render();
+        updateProgress();
+
+        // Set up controls
+        setupControls();
+      });
+    }
+
+    function setupControls() {
+      const playBtn = $$("#play-btn");
+      const resetBtn = $$("#reset-btn");
+      const progressBar = $$("#progress-bar");
+
+      playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+          pauseAnimation();
+        } else {
+          playAnimation();
+        }
+      });
+
+      resetBtn.addEventListener('click', () => {
+        pauseAnimation();
+        currentFrame = startFrame;
+        loadFrameWithTrail(currentFrame);
+        updateProgress();
+      });
+
+      progressBar.addEventListener('click', (e) => {
+        const rect = progressBar.getBoundingClientRect();
+        const percent = (e.clientX - rect.left) / rect.width;
+        currentFrame = Math.round(startFrame + percent * (endFrame - startFrame));
+        loadFrameWithTrail(currentFrame);
+        updateProgress();
+      });
+    }
+
+    function playAnimation() {
+      isPlaying = true;
+      $$("#play-btn").textContent = "Pause";
+
+      animationInterval = setInterval(() => {
+        currentFrame++;
+        if (currentFrame > endFrame) {
+          pauseAnimation();
+          return;
+        }
+        loadFrameWithTrail(currentFrame);
+        updateProgress();
+      }, 150);
+    }
+
+    function pauseAnimation() {
+      isPlaying = false;
+      $$("#play-btn").textContent = "Play";
+      if (animationInterval) {
+        clearInterval(animationInterval);
+        animationInterval = null;
+      }
+    }
+
+    function updateProgress() {
+      const progress = ((currentFrame - startFrame) / (endFrame - startFrame)) * 100;
+      $$("#progress-fill").style.width = progress + '%';
+      $$("#frame-label").textContent = `Frame ${currentFrame}/${endFrame}`;
+    }
+
+    function loadFrameWithTrail(frameNum) {
+      viewer.clear();
+
+      // Add previous frames with decreasing opacity
+      for (let i = trailLength - 1; i >= 0; i--) {
+        let trailFrame = frameNum - i;
+        if (trailFrame < 162) trailFrame += 30; // Wrap around
+
+        const opacity = i === 0 ? 1.0 : 0.3 - (i * 0.05); // Fade older frames
+        const data = frameCache[trailFrame];
+
+        if (data) {
+          const model = viewer.addModel(data, "pdb");
+          viewer.setStyle({model: model}, {
+            cartoon: {
+              color: i === 0 ? 'spectrum' : 'gray',
+              opacity: opacity
+            }
+          });
+        }
+      }
+
+      viewer.render();
+    }
+
+    // Initialize viewer when page loads
+    if ($$("#protein-viewer")) {
+      initProteinViewer();
+    }
   </script>
 </body>
 </html>

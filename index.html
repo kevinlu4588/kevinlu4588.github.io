@@ -74,7 +74,6 @@
       <div style="font-weight:800">Kevin&nbsp;Lu</div>
       <nav>
         <a href="#Publications & Presentations">Publications</a>
-        <a href="cv.pdf">CV</a>
       </nav>
     </div>
   </header>
@@ -91,8 +90,8 @@
         </div>
       </div>
       <div class="card">
-        <h2 style="margin-top: 8px;">ML + Mechanistic Interpretability for Biology</h2>
-        <p class="muted">I work on mechanistic interpretability for diffusion & protein language models. Currently a co-op at Takeda Pharmaceuticals. Interests: SAEs, interpretability of ESM-2/ESMFold, antibody/TCR design.</p>
+        <h2 style="margin-top: 8px;">Concept Erasure & Steering Protein Design</h2>
+        <p class="muted">I work on mechanistic interpretability of text to image diffusion models & protein language models. Currently an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener">Bau Lab</a> and a co-op at Takeda Pharmaceuticals training SAEs for antibody protein design! I'm interested in CS PhD programs focused on accelerating and interpreting drug discovery pipelines.</p>
       </div>
       <div class="card">
         <div class="kicker">Protein Folding Animation</div>
@@ -103,7 +102,7 @@
           <div class="control-buttons">
             <button class="control-btn" id="play-btn">Play</button>
             <button class="control-btn" id="reset-btn">Reset</button>
-            <span class="frame-label" id="frame-label">Frame 0/191</span>
+            <span class="frame-label" id="frame-label">Frame 94/191</span>
           </div>
         </div>
         <div id="protein-viewer" class="visualization-container"></div>
@@ -114,11 +113,11 @@
       <div class="card">
         <div class="kicker">News</div>
         <ul class="list" id="news">
-          <li><strong>Sep 2025</strong> — Our paper <em>When are concepts erased from diffusion models?</em> accepted to NeurIPS Main Track!</li>
-          <li><strong>Aug 2025</strong> — Served as a reviewer for NeurIPS Mechanistic Interpretability Workshop.</li>
-          <li><strong>Aug 2025</strong> — Presented <em>To Bind or Not to Bind: A Layer-Wise Dissection of Binding Information in ESM</em> at New England Mech Interp (NEMI) Workshop.</li>
+          <li><strong>Sep 2025</strong> — Our paper <em>When are concepts erased from diffusion models?</em> accepted to <strong style="color: var(--accent);">NeurIPS</strong> Main Track!</li>
+          <li><strong>Aug 2025</strong> — Served as a reviewer for <strong style="color: var(--accent);">NeurIPS</strong> Mechanistic Interpretability Workshop.</li>
+          <li><strong>Aug 2025</strong> — Presented <em>To Bind or Not to Bind: A Layer-Wise Dissection of Binding Information in ESM</em> at New England Mech Interp (<strong style="color: var(--accent);">NEMI</strong>) Workshop.</li>
           <li><strong>Jul 2025</strong> — Started co-op at Takeda Pharmaceuticals: focusing on PLM interpretability for antibody protein design.</li>
-          <li><strong>Jun 2025</strong> — Presented <em>Where do concepts go in diffusion models?</em> CVPR Generative Models for Computer Vision Workshop and Visual Concepts Workshop!</li>
+          <li><strong>Jun 2025</strong> — Presented <em>Where do concepts go in diffusion models?</em> <strong style="color: var(--accent);">CVPR</strong> Generative Models for Computer Vision Workshop and Visual Concepts Workshop!</li>
         </ul>
       </div>
     </section>
@@ -133,20 +132,24 @@
           {
             "title": "When Are Concepts Erased From Diffusion Models?",
             "authors": ["Kevin Lu", "Nicky Kriplani", "Rohit Gandikota", "Minh Pham", "David Bau", "Chinmay Hegde", "Niv Cohen"],
-            "venue": "NeurIPS 2025 (Poster)",
+            "venue": "<strong style='color: var(--accent);'>NeurIPS</strong> 2025 (Poster)",
             "year": 2025,
             "paper": "#",
             "code": "https://github.com/kevinlu4588/DiffusionConceptErasure",
             "arxiv": "https://arxiv.org/abs/2505.17013",
+            "thumbnail": "concept_erasure_thumbnail.png",
+            "abstract": "We begin by proposing two conceptual models for the erasure mechanism in diffusion models: (i) reducing the likelihood of generating the target concept, and (ii) interfering with the model's internal guidance mechanisms. To thoroughly assess whether a concept has been truly erased from the model, we introduce a suite of independent evaluations.",
             "tags": ["diffusion", "interpretability", "unlearning"]
           },
           {
             "title": "To Bind or Not to Bind: Layer-wise Probing of ESM",
             "authors": ["Kevin Lu"],
-            "venue": "Workshop 2025",
+            "venue": "<strong style='color: var(--accent);'>NEMI</strong> Workshop 2025",
             "year": 2025,
             "paper": "#",
             "code": "https://github.com/kevinlu4588/ESMProbing",
+            "thumbnail": "esm_probing_thumbnail.png",
+            "abstract": "We investigate this question through the case study of TCR CDR3b–peptide binding, probing the Evolutionary Scale Model (ESM) with a combination of difference-of-means analyses, classifier training on intermediate embeddings, and causal ablation of attention heads. Our findings suggest that intermediate representations may be more informative than final embeddings for binding prediction.",
             "tags": ["proteins", "ESM", "probing"]
           }
         ]
@@ -195,13 +198,26 @@
             .map(([label, href]) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`)
             .join(' · ');
           const tags = (p.tags||[]).map(t=>`<span class="tag">${t}</span>`).join(' ');
+
+          const thumbnail = p.thumbnail ? `
+            <a href="${p.arxiv || p.paper || '#'}" target="_blank" rel="noopener">
+              <img src="${p.thumbnail}" alt="${p.title}" style="width:100%;max-width:200px;border-radius:8px;margin-bottom:8px;cursor:pointer;" />
+            </a>
+          ` : '';
+
+          const abstract = p.abstract ? `<div class="muted" style="margin-top:8px;font-size:14px;line-height:1.5;">${p.abstract}</div>` : '';
+
           out.push(`
-            <div style="padding:14px 0;border-bottom:1px solid color-mix(in oklab, var(--fg) 10%, transparent)">
-              <div style="font-weight:700">${p.title}</div>
-              <div class="muted">${authors}${p.venue?` — ${p.venue}`:''}</div>
-              <div class="row" style="margin-top:6px">
-                <div>${tags}</div>
-                <div>${links}</div>
+            <div style="padding:14px 0;border-bottom:1px solid color-mix(in oklab, var(--fg) 10%, transparent);display:flex;gap:16px;">
+              ${thumbnail ? `<div style="flex-shrink:0;">${thumbnail}</div>` : ''}
+              <div style="flex:1;">
+                <div style="font-weight:700">${p.title}</div>
+                <div class="muted">${authors}${p.venue?` — ${p.venue}`:''}</div>
+                ${abstract}
+                <div class="row" style="margin-top:6px">
+                  <div>${tags}</div>
+                  <div>${links}</div>
+                </div>
               </div>
             </div>
           `);
@@ -218,10 +234,10 @@
 
     // Protein folding animation
     let viewer = null;
-    let currentFrame = 0;
-    const startFrame = 0;
+    let currentFrame = 94;
+    const startFrame = 94;
     const endFrame = 191;
-    const totalFrames = 192;
+    const totalFrames = 98;
     const trailLength = 5; // Number of previous frames to show
     const frameCache = {}; // Cache loaded PDB data
     let animationInterval = null;
@@ -229,14 +245,15 @@
 
     function initProteinViewer() {
       const element = $$("#protein-viewer");
-      const config = { backgroundColor: 'white' };
+      const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--card').trim();
+      const config = { backgroundColor: bgColor || '#ffffff' };
       viewer = $3Dmol.createViewer(element, config);
       viewer.resize();
 
       // Preload all frames
       const promises = [];
       for (let i = startFrame; i <= endFrame; i++) {
-        const frameStr = String(i).padStart(2, '0');
+        const frameStr = i < 100 ? String(i).padStart(2, '0') : String(i);
         promises.push(
           fetch(`pdb_files_aligned/fold_block_${frameStr}.pdb`)
             .then(res => res.text())

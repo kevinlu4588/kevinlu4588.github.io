@@ -11,17 +11,17 @@
   <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
   <style>
     :root {
-      --bg: #f5f7f5;
-      --fg: #1a1f1a;
-      --muted: #5a6b5a;
+      --bg: #f8f9fc;
+      --fg: #1a2332;
+      --muted: #64748b;
       --card: #ffffff;
-      --accent: #4a7c59;
-      --link: #2d5940;
+      --accent: #2563eb;
+      --link: #1d4ed8;
       --maxw: 1024px;
       --radius: 16px;
     }
     @media (prefers-color-scheme: dark) {
-      :root { --bg:#0f1410; --fg:#e8ede8; --muted:#a0b0a0; --card:#1a1f1a; --accent:#6b9d7a; --link:#8bc09f; }
+      :root { --bg:#0f172a; --fg:#f1f5f9; --muted:#94a3b8; --card:#1e293b; --accent:#3b82f6; --link:#60a5fa; }
     }
     html { color-scheme: light dark; }
     body { margin:0; font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg); color:var(--fg); }
@@ -50,8 +50,10 @@
     .profile-photo { width: 220px; height: 220px; border-radius: 50%; display:block; margin: 0 auto 16px; object-fit: cover; }
     .profile-section { display: flex; flex-direction: column; align-items: center; }
     .icon-links { display: flex; gap: 12px; margin-top: 16px; }
-    .icon-links a { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: var(--accent); color: white; font-weight: 700; text-decoration: none; }
-    .icon-links a.ghost { background: transparent; border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent); color: var(--fg); }
+    .icon-links a { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: white; color: var(--fg); font-weight: 700; text-decoration: none; padding: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .icon-links a.ghost { background: white; border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent); color: var(--fg); }
+    .icon-links a:hover { opacity: 0.8; }
+    .icon-links a img { width: 100%; height: 100%; object-fit: contain; }
 
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
@@ -74,6 +76,7 @@
       <div style="font-weight:800">Kevin&nbsp;Lu</div>
       <nav>
         <a href="#Publications & Presentations">Publications</a>
+        <a href="quotes.html">Quotes</a>
       </nav>
     </div>
   </header>
@@ -84,9 +87,9 @@
         <img src="PFP.png" alt="Kevin Lu" class="profile-photo" />
         <h1 style="font-size: clamp(32px, 5vw, 48px); text-align: center; margin: 0;">Kevin Lu</h1>
         <div class="icon-links">
-          <a href="mailto:lu.kev@northeastern.edu" title="Contact">✉️</a>
-          <a href="https://github.com/kevinlu4588" target="_blank" rel="noopener" title="GitHub" class="ghost">GH</a>
-          <a href="https://www.linkedin.com/in/kevin-lu-4588-/" target="_blank" rel="noopener" title="LinkedIn" class="ghost">in</a>
+          <a href="mailto:lu.kev@northeastern.edu" title="Contact"><img src="icons/email.svg" alt="Email"></a>
+          <a href="https://github.com/kevinlu4588" target="_blank" rel="noopener" title="GitHub" class="ghost"><img src="icons/github.svg" alt="GitHub"></a>
+          <a href="https://www.linkedin.com/in/kevin-lu-4588-/" target="_blank" rel="noopener" title="LinkedIn" class="ghost"><img src="icons/linkedin.svg" alt="LinkedIn"></a>
         </div>
       </div>
       <div class="card">
@@ -94,7 +97,7 @@
         <p class="muted">I work on mechanistic interpretability of text to image diffusion models & protein language models. Currently an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener">Bau Lab</a> and a co-op at Takeda Pharmaceuticals training SAEs for antibody protein design! I'm interested in CS PhD programs focused on accelerating and interpreting drug discovery pipelines.</p>
       </div>
       <div class="card">
-        <div class="kicker">Protein Folding Animation</div>
+        <div class="kicker">Protein Folding (ESM Folding Trunk Logit Lens)</div>
         <div class="controls">
           <div class="progress-bar" id="progress-bar">
             <div class="progress-fill" id="progress-fill"></div>
@@ -113,11 +116,11 @@
       <div class="card">
         <div class="kicker">News</div>
         <ul class="list" id="news">
-          <li><strong>Sep 2025</strong> — Our paper <em>When are concepts erased from diffusion models?</em> accepted to <strong style="color: var(--accent);">NeurIPS</strong> Main Track!</li>
-          <li><strong>Aug 2025</strong> — Served as a reviewer for <strong style="color: var(--accent);">NeurIPS</strong> Mechanistic Interpretability Workshop.</li>
-          <li><strong>Aug 2025</strong> — Presented <em>To Bind or Not to Bind: A Layer-Wise Dissection of Binding Information in ESM</em> at New England Mech Interp (<strong style="color: var(--accent);">NEMI</strong>) Workshop.</li>
+          <li><strong>Sep 2025</strong> — Our paper <em>When are concepts erased from diffusion models?</em> accepted to <a href="https://neurips.cc/Conferences/2025/Dates" target="_blank" rel="noopener"><strong style="color: var(--accent);">NeurIPS</strong></a> Main Track!</li>
+          <li><strong>Aug 2025</strong> — Served as a reviewer for <a href="https://neurips.cc/Conferences/2025/Dates" target="_blank" rel="noopener"><strong style="color: var(--accent);">NeurIPS</strong></a> <a href="https://mechinterpworkshop.com/" target="_blank" rel="noopener">Mechanistic Interpretability Workshop</a>.</li>
+          <li><strong>Aug 2025</strong> — Presented <em>To Bind or Not to Bind: A Layer-Wise Dissection of Binding Information in ESM</em> at New England Mech Interp (<a href="https://nemiconf.github.io/summer25/" target="_blank" rel="noopener"><strong style="color: var(--accent);">NEMI</strong></a>) Workshop.</li>
           <li><strong>Jul 2025</strong> — Started co-op at Takeda Pharmaceuticals: focusing on PLM interpretability for antibody protein design.</li>
-          <li><strong>Jun 2025</strong> — Presented <em>Where do concepts go in diffusion models?</em> <strong style="color: var(--accent);">CVPR</strong> Generative Models for Computer Vision Workshop and Visual Concepts Workshop!</li>
+          <li><strong>Jun 2025</strong> — Presented <em>Where do concepts go in diffusion models?</em> <a href="https://generative-vision.github.io/workshop-CVPR-25/" target="_blank" rel="noopener"><strong style="color: var(--accent);">CVPR</strong> Generative Models for Computer Vision Workshop</a> and Visual Concepts Workshop!</li>
         </ul>
       </div>
     </section>
@@ -132,7 +135,7 @@
           {
             "title": "When Are Concepts Erased From Diffusion Models?",
             "authors": ["Kevin Lu", "Nicky Kriplani", "Rohit Gandikota", "Minh Pham", "David Bau", "Chinmay Hegde", "Niv Cohen"],
-            "venue": "<strong style='color: var(--accent);'>NeurIPS</strong> 2025 (Poster)",
+            "venue": "<a href='https://neurips.cc/Conferences/2025/Dates' target='_blank' rel='noopener'><strong style='color: var(--accent);'>NeurIPS</strong></a> 2025 (Poster)",
             "year": 2025,
             "paper": "#",
             "code": "https://github.com/kevinlu4588/DiffusionConceptErasure",
@@ -144,7 +147,7 @@
           {
             "title": "To Bind or Not to Bind: Layer-wise Probing of ESM",
             "authors": ["Kevin Lu"],
-            "venue": "<strong style='color: var(--accent);'>NEMI</strong> Workshop 2025",
+            "venue": "<a href='https://nemiconf.github.io/summer25/' target='_blank' rel='noopener'><strong style='color: var(--accent);'>NEMI</strong></a> Workshop 2025",
             "year": 2025,
             "paper": "#",
             "code": "https://github.com/kevinlu4588/ESMProbing",

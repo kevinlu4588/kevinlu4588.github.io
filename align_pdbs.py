@@ -8,7 +8,7 @@ import os
 pdb_dir = "pdb_files"
 output_dir = "pdb_files_aligned"
 start_frame = 0
-end_frame = 191
+end_frame = 36
 
 # Create output directory
 os.makedirs(output_dir, exist_ok=True)
@@ -25,7 +25,7 @@ prev_model = None
 
 # Align all structures
 for frame_num in range(start_frame, end_frame + 1):
-    pdb_file = f"{pdb_dir}/fold_block_{frame_num:02d}.pdb"
+    pdb_file = f"{pdb_dir}/sample_{frame_num}.pdb"
     output_file = f"{output_dir}/fold_block_{frame_num:02d}.pdb"
 
     # Load structure

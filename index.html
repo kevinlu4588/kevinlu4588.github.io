@@ -10,19 +10,26 @@
   <meta property="og:type" content="website" />
   <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
   <style>
-    :root {
-      --bg: #f5f1eb;
-      --fg: #2c2416;
-      --muted: #6b5d4f;
-      --card: #faf8f5;
-      --accent: #8b6f47;
-      --link: #7a5c3a;
-      --maxw: 1024px;
-      --radius: 16px;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg:#0f172a; --fg:#f1f5f9; --muted:#94a3b8; --card:#1e293b; --accent:#3b82f6; --link:#60a5fa; }
-    }
+ :root {
+  --bg: #f5f1eb;       /* warm sand background (light but not white) */
+  --fg: #000000;       /* black text */
+  --muted: #000000;    /* black muted text */
+  --card: #faf8f5;      /* slightly lighter card background */
+  --accent: #0c35d9;    /* warm neutral accent for borders, headings */
+  --link: #0c35d9;      /* links use accent color */
+  --maxw: 1024px;
+  --radius: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17130d;       /* dark sand background */
+    --fg: #f1ede7;       /* light parchment text */
+    --muted: #a8957d;    /* muted warm text */
+    --card: #1e1912;     /* darker card panels */
+    --accent: #5e99e0;   /* warm gold accent */
+    --link: #5e99e0;     /* warm sand link color */
+  }
+}
     html { color-scheme: light dark; }
     body { margin:0; font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg); color:var(--fg); }
     a { color: var(--link); text-decoration: none; }
@@ -96,7 +103,7 @@
       </div>
       <div class="card">
         <h2 style="margin-top: 8px;">Concept Erasure & Steering Protein Design</h2>
-        <p class="muted">I work on mechanistic interpretability of text to image diffusion models & protein language models. Currently an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener">Bau Lab</a> and a co-op at Takeda Pharmaceuticals training SAEs for antibody protein design! I'm interested in CS PhD programs focused on accelerating and interpreting drug discovery pipelines.</p>
+        <p class="muted">I work on mechanistic interpretability of text to image diffusion models & protein language models. Currently an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Bau Lab</a> and a co-op at Takeda Pharmaceuticals training SAEs for antibody protein design! I'm interested in CS PhD programs focused on accelerating and interpreting drug discovery pipelines.</p>
       </div>
       <div class="card">
         <div class="kicker">Protein Folding (ESM Folding Trunk Logit Lens)</div>
@@ -107,7 +114,7 @@
           <div class="control-buttons">
             <button class="control-btn" id="play-btn">Play</button>
             <button class="control-btn" id="reset-btn">Reset</button>
-            <span class="frame-label" id="frame-label">Frame 94/191</span>
+            <span class="frame-label" id="frame-label">Frame 0/36</span>
           </div>
         </div>
         <div id="protein-viewer" class="visualization-container"></div>
@@ -130,7 +137,6 @@
     <section id="Publications & Presentations" style="margin-top: 28px;">
       <h2>Publications & Presentations</h2>
       <div id="pubs" class="card" style="margin-top: 12px"></div>
-      <div class="muted" style="margin-top:8px">Publications are loaded from <code>publications.json</code> (or the inline fallback below). Replace with your own.</div>
 
       <script id="pubs-fallback" type="application/json">{
         "entries": [
@@ -217,7 +223,8 @@
               ${thumbnail ? `<div style="flex-shrink:0;">${thumbnail}</div>` : ''}
               <div style="flex:1;">
                 <div style="font-weight:700">${p.title}</div>
-                <div class="muted">${authors}${p.venue?` — ${p.venue}`:''}</div>
+                <div class="muted">${authors}</div>
+                ${p.venue ? `<div class="muted" style="margin-top:4px;">${p.venue}</div>` : ''}
                 ${abstract}
                 <div class="row" style="margin-top:6px">
                   <div>${tags}</div>
@@ -239,11 +246,10 @@
 
     // Protein folding animation
     let viewer = null;
-    let currentFrame = 94;
-    const startFrame = 94;
-    const endFrame = 191;
-    const totalFrames = 98;
-    const trailLength = 5; // Number of previous frames to show
+    let currentFrame = 0;
+    const startFrame = 0;
+    const endFrame = 36;
+    const totalFrames = 37;
     const frameCache = {}; // Cache loaded PDB data
     let animationInterval = null;
     let isPlaying = false;
@@ -258,7 +264,7 @@
       // Preload all frames
       const promises = [];
       for (let i = startFrame; i <= endFrame; i++) {
-        const frameStr = i < 100 ? String(i).padStart(2, '0') : String(i);
+        const frameStr = String(i).padStart(2, '0');
         promises.push(
           fetch(`pdb_files_aligned/fold_block_${frameStr}.pdb`)
             .then(res => res.text())
@@ -267,7 +273,7 @@
       }
 
       Promise.all(promises).then(() => {
-        loadFrameWithTrail(currentFrame);
+        loadFrame(currentFrame);
         viewer.zoomTo(); // Zoom once at the start
         viewer.render();
         updateProgress();
@@ -293,7 +299,7 @@
       resetBtn.addEventListener('click', () => {
         pauseAnimation();
         currentFrame = startFrame;
-        loadFrameWithTrail(currentFrame);
+        loadFrame(currentFrame);
         updateProgress();
       });
 
@@ -301,7 +307,7 @@
         const rect = progressBar.getBoundingClientRect();
         const percent = (e.clientX - rect.left) / rect.width;
         currentFrame = Math.round(startFrame + percent * (endFrame - startFrame));
-        loadFrameWithTrail(currentFrame);
+        loadFrame(currentFrame);
         updateProgress();
       });
     }
@@ -316,7 +322,7 @@
           pauseAnimation();
           return;
         }
-        loadFrameWithTrail(currentFrame);
+        loadFrame(currentFrame);
         updateProgress();
       }, 150);
     }
@@ -336,29 +342,15 @@
       $$("#frame-label").textContent = `Frame ${currentFrame}/${endFrame}`;
     }
 
-    function loadFrameWithTrail(frameNum) {
+    function loadFrame(frameNum) {
       viewer.clear();
 
-      // Add previous frames with decreasing opacity
-      for (let i = trailLength - 1; i >= 0; i--) {
-        let trailFrame = frameNum - i;
-        if (trailFrame < 162) trailFrame += 30; // Wrap around
-
-        const opacity = i === 0 ? 1.0 : 0.3 - (i * 0.05); // Fade older frames
-        const data = frameCache[trailFrame];
-
-        if (data) {
-          const model = viewer.addModel(data, "pdb");
-          viewer.setStyle({model: model}, {
-            cartoon: {
-              color: i === 0 ? 'spectrum' : 'gray',
-              opacity: opacity
-            }
-          });
-        }
+      const data = frameCache[frameNum];
+      if (data) {
+        viewer.addModel(data, "pdb");
+        viewer.setStyle({}, {cartoon: {color: 'spectrum'}});
+        viewer.render();
       }
-
-      viewer.render();
     }
 
     // Initialize viewer when page loads

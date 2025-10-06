@@ -6,19 +6,27 @@
   <title>Quotes — Kevin Lu</title>
   <meta name="description" content="Words that move me!" />
   <style>
+      :root {
+    --bg: #f9f9f9;       /* near-white background */
+    --fg: #000000;       /* black text */
+    --muted: #6e6e6e;    /* neutral muted text */
+    --card: #ffffff;      /* true white cards for quotes */
+    --accent: #444444;    /* neutral dark accent for headings and borders */
+    --link: #2d2d2d;      /* slightly darker for subtle contrast */
+    --maxw: 800px;
+    --radius: 16px;
+  }
+
+  @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #f5f1eb;
-      --fg: #2c2416;
-      --muted: #6b5d4f;
-      --card: #faf8f5;
-      --accent: #8b6f47;
-      --link: #7a5c3a;
-      --maxw: 800px;
-      --radius: 16px;
+      --bg: #121212;      /* dark but neutral background */
+      --fg: #e5e5e5;      /* light grey text */
+      --muted: #a1a1a1;   /* muted tone */
+      --card: #1e1e1e;    /* darker card surface */
+      --accent: #888888;  /* subtle neutral accent */
+      --link: #bcbcbc;    /* slightly brighter link color */
     }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg:#0f172a; --fg:#f1f5f9; --muted:#94a3b8; --card:#1e293b; --accent:#3b82f6; --link:#60a5fa; }
-    }
+  }
     html { color-scheme: light dark; }
     body { margin:0; font: 16px/1.8 'Courier New', Courier, monospace; background:var(--bg); color:var(--fg); }
     a { color: var(--link); text-decoration: none; }

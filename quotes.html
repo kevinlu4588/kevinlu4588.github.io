@@ -17,17 +17,16 @@
     --radius: 16px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121212;      /* dark but neutral background */
-      --fg: #e5e5e5;      /* light grey text */
-      --muted: #a1a1a1;   /* muted tone */
-      --card: #1e1e1e;    /* darker card surface */
-      --accent: #888888;  /* subtle neutral accent */
-      --link: #bcbcbc;    /* slightly brighter link color */
-    }
-  }
-    html { color-scheme: light dark; }
+body.dark-mode {
+  --bg: #121212;      /* dark but neutral background */
+  --fg: #e5e5e5;      /* light grey text */
+  --muted: #a1a1a1;   /* muted tone */
+  --card: #1e1e1e;    /* darker card surface */
+  --accent: #888888;  /* subtle neutral accent */
+  --link: #bcbcbc;    /* slightly brighter link color */
+}
+    .theme-toggle { cursor: pointer; padding: 8px; border-radius: 8px; background: var(--card); border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent); font-weight: 600; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+    .theme-toggle svg { width: 20px; height: 20px; fill: var(--fg); }
     body { margin:0; font: 16px/1.8 'Courier New', Courier, monospace; background:var(--bg); color:var(--fg); }
     a { color: var(--link); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -49,27 +48,19 @@
       <a href="index.html" style="font-weight:800; text-decoration:none; color:var(--fg);">Kevin&nbsp;Lu</a>
       <nav>
         <a href="index.html">Home</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m18.36-6.36l-4.24 4.24m-6.36 6.36L4.64 19.36m14.72 0l-4.24-4.24m-6.36-6.36L4.64 4.64"/></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
     <h1>Quotes</h1>
-    <p class="subtitle">Words that have moved me!i</p>
-
-    <div class="quote">
-      <div class="quote-text">
-        "It is not only important but mentally invigorating to discuss political matters with people whose opinions differ radically from one's own. For the same reason, I believe it is a sound idea to attend not only the meetings of one's own party but of the opposition. Find out what people are saying, what they are thinking, what they believe. This is an invaluable check on one's own ideas . . . . If we are to cope intellectually with a changing world, we must be flexible and willing to relinquish opinions that no longer have any bearing on existing conditions."
-      </div>
-      <div class="quote-source">— Eleanor Roosevelt</div>
-    </div>
+    <p class="subtitle">Words that have moved me!</p>
 
     <h2>To Sleep in a Sea of Stars, by Christopher Paolini</h2>
-    <div class="quote">
-      <div class="quote-text">
-        Meaning comes from purpose and purpose comes in many forms. Have you ever considered the fact that everything we are originates from the remnants of stars that once exploded? <em>Vita ex pulvis</em>. We are made from the dust of dead stars. The relevance is in the logical extension of that idea. We are aware. We are conscious. And we are made from the same stuff as the heavens. We are the mind of the universe itself. We and the Jellies and all self-aware beings. We are the universe watching itself, watching and learning. And someday, we, and by extension the universe, will learn to expand beyond this realm and save ourselves from otherwise inevitable extinction. The point is that this act of observation and learning is a process we all share whether or not we realize it. As such, it gives purpose to everything we do, no matter how insignificant it may seem, and from that purpose, meaning. For the universe itself, given consciousness through your own mind is aware of your every hurt and care. Take comfort, then, that whatever you choose in life has importance beyond yourself. Importance even, on a cosmic scale.
-      </div>
-    </div>
 
     <div class="quote">
       <div class="quote-text">
@@ -78,22 +69,6 @@
       </div>
       <div class="quote-source">— Inare</div>
     </div>
-
-    <h2>Inheritance Cycle</h2>
-    <div class="quote">
-      <div class="quote-text">
-        The sea is emotion incarnate. It loves, hates, and weeps. It defies all attempts to capture it with words and rejects all shackles. No matter what you say about it, there is always that which you can't. [...] Though they live far from the coast, they retain a great fascination and passion for the ocean. The sound of crashing waves, the smell of salt air, it affects them deeply and has inspired many of their loveliest songs.
-      </div>
-      <div class="quote-source">— Brom (pg 169)</div>
-    </div>
-
-    <div class="quote">
-      <div class="quote-text">
-        "I see now that the circumstances of one's birth are irrelevant. It is what you do with the gift of life that determines who you are."
-      </div>
-      <div class="quote-source">— Mewtwo</div>
-    </div>
-
     <div class="quote">
       <div class="quote-text">
         "Quit, don't quit. Noodles, don't noodles. You are too concerned with what was and what will be. There's a saying: Yesterday is history, tomorrow is a mystery, but today is a gift. That is why it is called the present."
@@ -108,126 +83,6 @@
       <div class="quote-source">— Melinda Dingley Doel</div>
     </div>
 
-    <h2>Bible</h2>
-    <div class="quote">
-      <div class="quote-text">
-        This is what the Lord says:<br>
-        "Stand at the crossroads and look;<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;ask for the ancient paths,<br>
-        ask where the good way is, and walk in it,<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;and you will find rest for your souls.<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;But you said, 'We will not walk in it.'"
-      </div>
-      <div class="quote-source">— Jeremiah 6:16</div>
-    </div>
-
-    <p style="font-style: italic; color: var(--muted); margin: 20px 0;">Life is full of crossroads. Eat the path.</p>
-
-    <h2>Grace: President Obama and Ten Days in the Battle for America, by Cody Keenan</h2>
-    <div class="quote">
-      <div class="quote-text">
-        From then on, I thought about that all the time. Finding the silences. In a speech, in life, in the moments of mental stress and emotional dread when I didn't think I could meet the moment. Take a breath. Pour a drink if you've got one. Focus on finding the silences.
-      </div>
-    </div>
-
-
-    <h2>My Pen is the Wing of a Bird, by Afghan Visionaries</h2>
-    <div class="quote">
-      <div class="quote-text">
-        "My pen is the wing of a bird; it will tell you those thoughts we are not allowed to think, those dreams we are not allowed to dream."
-      </div>
-      <div class="quote-source">— Batool Haidari, Untold author, International Women's Day 2021</div>
-    </div>
-
-    <div class="quote">
-      <div class="quote-text">
-        "What if I die alone and no one knows that I am dead? This thought brings a deeper sense of loneliness. She tightens the knot of her three-cornered scarf."
-      </div>
-      <div class="quote-source">— Companion, by Maryam Mahjoba</div>
-    </div>
-
-    <div class="quote">
-      <div class="quote-text">
-        "The three of us walked towards the bus stop. I wondered what to tell my family. How would poor Naghmah afford to take her brother to the rehabilitation center? But Ava's words had calmed me. I said to the girls: 'God is great! We will find jobs again.'"
-      </div>
-    </div>
-
-    <h2>Sigh Gone, by Phuc Tran</h2>
-
-    <h3 style="font-size: 18px; color: var(--muted); margin: 24px 0 12px;">Library</h3>
-    <div class="quote">
-      <div class="quote-text">
-        My father loved the library because it was a safe haven for him – no missed cultural cues, no bigoted insults from his coworkers, no glaring reminders of what was lost. All patrons of the library were pilgrims to the oracle, all seeking the same thing: knowledge. And in their pursuits of the same thing, they were all equals.
-      </div>
-      <div class="quote-source">— Pg 145</div>
-    </div>
-
-    <h3 style="font-size: 18px; color: var(--muted); margin: 24px 0 12px;">Photos</h3>
-    <div class="quote">
-      <div class="quote-text">
-        These photos, these moments, the quick flash of the cameras, froze single frames in my parents' stories. My brother and I didn't know what the rest of their story looked like before us - it was our youthful ignorance that kept us from asking more, from wanting to know more. We didn't appreciate the pain that my mother - and maybe even my father - was feeling at the loss of the photos, photos never before seen, of stories never told. Our mild indifference amplified the tragedy, the last bits of their old life mangled and washed away.
-      </div>
-      <div class="quote-source">— Pg 170</div>
-    </div>
-
-    <h3 style="font-size: 18px; color: var(--muted); margin: 24px 0 12px;">Water</h3>
-    <div class="quote">
-      <div class="quote-text">
-        In Vietnamese, the word for country and the word for water are the same: <em>nuoc</em>. Context obviously makes it clear if you're talking about the former or the latter, but in Vietnamese, your country is not the terra firma or the nationality; it's the water. The waters that feed the soil. The waters that lap your shores. If you ask someone where they're from, you're asking them literally from what waters do they come. The country of America is called, in Vietnamese, <em>nuoc my</em>: the waters of America.<br><br>
-        I've wondered why water was a synonym with country, but a quick look at Vietnam's geography seems to hint at its origin. Vietnam's two-thousand-mile-long coastline, thousands of islands, massive rivers and deltas, the waters that flow through Viet Nam, the monsoons that mark its seasons between rainy and dry: waters run its length, slice through it, define it. Its waters were so prominent to its primordial people that water defined where you came from. Water was your country. ... Old water. New water. Old country. New country. Aqua vitae. Giver of life. Destroyer of memories.<br><br>
-        We are born from water, live by water, rest in water.
-      </div>
-      <div class="quote-source">— Pg 171</div>
-    </div>
-
-    <h3 style="font-size: 18px; color: var(--muted); margin: 24px 0 12px;">Mom</h3>
-    <div class="quote">
-      <div class="quote-text">
-        I held the receiver for a moment, thinking over and over: I was not going home. Fuck them. I was not going home. As soon as I heard my mother's crying and her flurry of Vietnamese entreaties, my heart broke. My father had tried to break me physically with his scissors, and I thought I had steeled myself in the intervening weeks. I thought that my parents could hurt me anymore because I had escaped. I was ready to endure whatever fate inflicted upon me, but I wasn't ready for this phone call. I wasn't prepared to hear a mother's sorrow, my mother's sorrow. I wasn't ready to hear her voice, and beneath it, her love, undiminished and ever present. I wasn't able to bear my responsibility in her pain. The vessel of my heart couldn't hold both my rage for my father and my love for my mother. Like glass subjected to heat and cold, I cracked.<br><br>
-        Whatever assemblage of myself that I had willfully pieced together fragmented under the tremor of her voice. I knew I had to go home again.
-      </div>
-    </div>
-
-    <h3 style="font-size: 18px; color: var(--muted); margin: 24px 0 12px;">The Plan</h3>
-    <div class="quote">
-      <div class="quote-text">
-        I sank into my reading chair, and reread the introduction to The Lifetime Reading Plan, buoyed by Fadiman's passion for books and ideas. This was what it meant to be educated, to be American. The Plan allowed you to be part of an intellectual conversation that was hundreds of years old, and all you needed to do was read the books. Fadiman and his books didn't care where I was from or how much money my parents made or what language I spoke. The table was set and a seat was open for anyone willing to read the books - the books were both the invitation and the price of admission.
-      </div>
-    </div>
-
-    <h3 style="font-size: 18px; color: var(--muted); margin: 24px 0 12px;">The Play</h3>
-    <div class="quote">
-      <div class="quote-text">
-        Was that what it felt like to connect with another person over a shared love of something? It felt similar to how I felt after seeing bands or slamming in the pit, but it was more ... electric. Seeing punk bands and moshing with your friends felt dangerous and afterward, the adrenaline rush was a slow downshift to your heart rate's baseline. But that was seeing a band. Having the bass line surge through you. Thrashing in unison with the audience. It was purely physical. [...] On top of that I felt connected and cared for by Mrs. Krebs. I felt known and seen, not for being Vietnamese but for my passions and ideas. For the first time in my life I felt deeply understood; the realness of that connection, of that brief exchange, ignited a thin, bright comet's tail in the dark horizon of my adolescence. This connection was what Fadiman was talking about. This was the power of sharing in great literature. I felt as euphoric as I had ever felt, and I didn't need to pound any beers or smoke any weed.
-      </div>
-      <div class="quote-source">— Pg 220</div>
-    </div>
-
-    <h3 style="font-size: 18px; color: var(--muted); margin: 24px 0 12px;">Acknowledgements</h3>
-    <div class="quote">
-      <div class="quote-text">
-        <strong>Sue Tran:</strong> Where do I even begin? You've read every single word I've written, a hundred times over. Your keen insights and sensitive reading of every sentence, paragraph, and chapter made my writing and book better. And beyond your literary prowess, you soldiered on alone on weekends with nary a complaint while I hid myself away to write and edit. The kids were fed, dressed, and cleaned; the laundry was done; dinner was cooked - all this happened while I sat on my ass, writing and psychoanalyzing my childhood. You're the Mary to my George Bailey. Thanks for finding me in this wonderful life. I love you more than my words can express, but I will spend the rest of my life trying to tell you.<br><br>
-        <strong>Last but certainly not least, Phoebe Tran and Beatrix Tran:</strong> You're six and eight at this writing. I'll try to control my dread when you read this book... I hope that you can see me as a person who had many struggles and persevered all while seeing humor and beauty in the world and drawing strength from my friends, family, and teachers. I was a teenager once, too, and not the overbearing protective, and sarcastic person that I am now. Well, I was always sarcastic. And probably an overbearing tool. I was not always protective, but I didn't have anything I wanted to protect until you were born. You girls make me want to be the best version of myself, and I fail every day. But every day, I try again. I love you both so much. Thanks for letting me be your father.
-      </div>
-    </div>
-
-    <p style="font-style: italic; color: var(--muted); margin: 32px 0;">Phuc speaks to family, human experience (creative expression, philosophy, love). Seated at the table of thousands of years of intellectual conversation. Beautiful. Jumpstart my heart.</p>
-
-    <h2>Oppression of the Mind (Les Misérables, 7/23/2025)</h2>
-    <div class="quote">
-      <div class="quote-text">
-        Monseigneur Bienvenu was simply a man who observed these mysteries from outside, not looking too closely, not stirring them with his finger or letting them oppress his mind, but in a spirit deeply imbued with reverence for the hereafter.
-      </div>
-    </div>
-
-    <h2>The Abyss (Les Misérables, Pg 103, 7/23/2025)</h2>
-    <div class="quote">
-      <div class="quote-text">
-        Solitary in the huge gulf of twilight he twists and turns, feeling the waves of the unknowable close in upon him. And for the last time he calls, but not to man. Where is God?<br><br>
-        He calls to anyone or anything - he calls and calls and there is no reply, nothing on the face of the waters, nothing in the heavens. He calls to the sea and spray, but they are deaf; he calls to the winds, but they are answerable only to infinity. Around him dusk and solitude, the heedless tumult of wild waters; within him terror and exhaustion; below him the descent into nothingness. No foothold. He pictures his body adrift in that limitless dark. The chill numbs him. His hands open and close, clutching at nothing. Wind and tumult and useless stars. What can he do? Despair ends in resignation, exhaustion chooses death, and so at length he gives up the struggle and his body sinks for ever.<br><br>
-        Such is the remorseless progression of human society . . .
-      </div>
-    </div>
 
     <h2>Books to Read</h2>
     <ul style="color: var(--muted); line-height: 2;">
@@ -241,5 +96,35 @@
       <a href="index.html" style="color: var(--muted);">← Back to Home</a>
     </footer>
   </main>
+
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = themeToggle.querySelector('.sun-icon');
+    const moonIcon = themeToggle.querySelector('.moon-icon');
+    const savedTheme = localStorage.getItem('theme');
+
+    function updateThemeIcon(isDark) {
+      if (isDark) {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      }
+    }
+
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      updateThemeIcon(true);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      updateThemeIcon(isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
 </body>
 </html>

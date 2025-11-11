@@ -214,11 +214,11 @@ body.dark-mode {
       updateThemeIcon(isDark);
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
 
-      // Update protein viewer background and color scheme
+      // Update protein viewer background
       if (viewer) {
-        const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--card').trim();
+        const bgColor = isDark ? '#1e1912' : '#ffffff';
         viewer.setBackgroundColor(bgColor);
-        loadFrame(currentFrame); // Reload current frame with new color scheme
+        viewer.render();
       }
     });
 
@@ -299,8 +299,9 @@ body.dark-mode {
 
     function initProteinViewer() {
       const element = $$("#protein-viewer");
-      const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--card').trim();
-      const config = { backgroundColor: bgColor || '#ffffff' };
+      const isDark = document.body.classList.contains('dark-mode');
+      const bgColor = isDark ? '#1e1912' : '#ffffff';
+      const config = { backgroundColor: bgColor };
       viewer = $3Dmol.createViewer(element, config);
       viewer.resize();
 
@@ -386,14 +387,13 @@ body.dark-mode {
     }
 
     function loadFrame(frameNum) {
+      if (!viewer) return;
       viewer.clear();
 
       const data = frameCache[frameNum];
       if (data) {
         viewer.addModel(data, "pdb");
-        const isDark = document.body.classList.contains('dark-mode');
-        const colorScheme = isDark ? 'greenCarbon' : 'spectrum';
-        viewer.setStyle({}, {cartoon: {color: colorScheme}});
+        viewer.setStyle({}, {cartoon: {color: 'spectrum'}});
         viewer.render();
       }
     }

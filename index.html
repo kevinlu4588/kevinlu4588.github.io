@@ -214,11 +214,11 @@ body.dark-mode {
       updateThemeIcon(isDark);
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
 
-      // Update protein viewer background
+      // Update protein viewer background and color scheme
       if (viewer) {
         const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--card').trim();
         viewer.setBackgroundColor(bgColor);
-        viewer.render();
+        loadFrame(currentFrame); // Reload current frame with new color scheme
       }
     });
 
@@ -391,7 +391,9 @@ body.dark-mode {
       const data = frameCache[frameNum];
       if (data) {
         viewer.addModel(data, "pdb");
-        viewer.setStyle({}, {cartoon: {color: 'spectrum'}});
+        const isDark = document.body.classList.contains('dark-mode');
+        const colorScheme = isDark ? 'greenCarbon' : 'spectrum';
+        viewer.setStyle({}, {cartoon: {color: colorScheme}});
         viewer.render();
       }
     }

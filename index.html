@@ -11,12 +11,12 @@
   <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
   <style>
  :root {
-  --bg: #f5f1eb;       /* warm sand background (light but not white) */
-  --fg: #000000;       /* black text */
-  --muted: #000000;    /* black muted text */
-  --card: #faf8f5;      /* slightly lighter card background */
-  --accent: #0c35d9;    /* warm neutral accent for borders, headings */
-  --link: #0c35d9;      /* links use accent color */
+  --bg: #f8f9fa;       /* light gray background - clean and professional */
+  --fg: #1a1a1a;       /* dark gray text (softer than pure black) */
+  --muted: #6c757d;    /* muted gray text */
+  --card: #ffffff;     /* white card background */
+  --accent: #0c35d9;   /* blue accent for borders, headings */
+  --link: #0c35d9;     /* links use accent color */
   --maxw: 1024px;
   --radius: 16px;
 }
@@ -28,15 +28,18 @@ body.dark-mode {
   --accent: #5e99e0;   /* warm gold accent */
   --link: #5e99e0;     /* warm sand link color */
 }
-    .theme-toggle { cursor: pointer; padding: 8px; border-radius: 8px; background: var(--card); border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent); font-weight: 600; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-    .theme-toggle svg { width: 20px; height: 20px; fill: var(--fg); }
+    .theme-toggle { cursor: pointer; padding: 6px; border-radius: 8px; background: transparent; border: 1px solid transparent; font-weight: 600; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; }
+    .theme-toggle:hover { background: var(--card); border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent); }
+    .theme-toggle img { width: 18px; height: 18px; }
+    body.dark-mode .theme-toggle img { filter: invert(1); }
     body { margin:0; font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg); color:var(--fg); }
     a { color: var(--link); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
     header { position: sticky; top: 0; backdrop-filter: blur(6px); background: color-mix(in oklab, var(--bg) 86%, transparent); border-bottom: 1px solid color-mix(in oklab, var(--fg) 10%, transparent); }
     header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    nav a { margin-left: 16px; font-weight: 600; }
+    nav { display: flex; align-items: center; gap: 16px; }
+    nav a { font-weight: 600; }
     .hero { display:grid; grid-template-columns: 0.8fr 1.2fr 1fr; gap: 24px; padding-top: 28px; }
     .card { background: var(--card); border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent); border-radius: var(--radius); padding: 20px; }
     h1 { font-size: clamp(22px, 3.2vw, 32px); line-height: 1.25; margin: 12px 0 8px; }
@@ -84,8 +87,8 @@ body.dark-mode {
         <a href="#Publications & Presentations">Publications</a>
         <a href="quotes.html">Quotes</a>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m18.36-6.36l-4.24 4.24m-6.36 6.36L4.64 19.36m14.72 0l-4.24-4.24m-6.36-6.36L4.64 4.64"/></svg>
-          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <img src="icons/sun.svg" alt="Sun" class="sun-icon" />
+          <img src="icons/moon.svg" alt="Moon" class="moon-icon" style="display: none;" />
         </button>
       </nav>
     </div>
@@ -98,10 +101,11 @@ body.dark-mode {
         <h1 style="font-size: clamp(32px, 5vw, 48px); text-align: center; margin: 0;">Kevin Lu</h1>
         <div style="color: var(--muted); font-size: 16px; margin-top: 4px;">lu.kev@northeastern.edu</div>
         <div class="icon-links">
-          <a href="mailto:lu.kev@northeastern.edu" title="Contact"><img src="icons/email.svg" alt="Email"></a>
+          <a href="mailto:lu.kev@northeastern.edu" title="Contact"><img src="icons/email-color.svg" alt="Email"></a>
           <a href="https://github.com/kevinlu4588" target="_blank" rel="noopener" title="GitHub" class="ghost"><img src="icons/github.svg" alt="GitHub"></a>
-          <a href="https://www.linkedin.com/in/kevin-lu-4588-/" target="_blank" rel="noopener" title="LinkedIn" class="ghost"><img src="icons/linkedin.svg" alt="LinkedIn"></a>
+          <a href="https://www.linkedin.com/in/kevin-lu-4588-/" target="_blank" rel="noopener" title="LinkedIn" class="ghost"><img src="icons/linkedin-color.svg" alt="LinkedIn"></a>
           <a href="https://x.com/kevinlu4588" target="_blank" rel="noopener" title="Twitter/X" class="ghost"><img src="icons/twitter.svg" alt="Twitter"></a>
+          <a href="https://scholar.google.com/citations?user=0NU0lBUAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar" class="ghost"><img src="icons/google-scholar-color.svg" alt="Google Scholar"></a>
         </div>
       </div>
       <div class="card">

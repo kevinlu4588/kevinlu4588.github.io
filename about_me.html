@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Me — Kevin Lu</title>
+
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --fg: #1a1a1a;
+      --muted: #6c757d;
+      --card: #ffffff;
+      --accent: #0c35d9;
+      --link: #0c35d9;
+      --maxw: 1024px;
+      --radius: 16px;
+    }
+    body.dark-mode {
+      --bg: #17130d;
+      --fg: #f1ede7;
+      --muted: #a8957d;
+      --card: #1e1912;
+      --accent: #5e99e0;
+      --link: #5e99e0;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    a { color: var(--link); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+
+    /* --- Header (identical to main site) --- */
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(6px);
+      background: color-mix(in oklab, var(--bg) 86%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--fg) 10%, transparent);
+      z-index: 50;
+    }
+
+    header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    nav a { font-weight: 600; }
+
+    .theme-toggle {
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid transparent;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .theme-toggle:hover {
+      background: var(--card);
+      border: 1px solid color-mix(in oklab, var(--fg) 18%, transparent);
+    }
+    .theme-toggle img { width: 18px; height: 18px; }
+    body.dark-mode .theme-toggle img { filter: invert(1); }
+
+        /* --- Page content --- */
+    .photo-card img {
+    width: 100%;
+    max-width: 500px;   /* limit size */
+    display: block;
+    margin: 0 auto 10px; /* center horizontally */
+    }
+
+    .photo-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .caption { font-size: 14px; color: var(--muted); }
+
+    h1 { font-size: 32px; margin-bottom: 4px; }
+    h2 { font-size: 22px; margin-top: 32px; margin-bottom: 8px; }
+
+    @media (max-width: 900px) {
+      header .wrap { flex-direction: row; }
+      nav a { margin-left: 10px; }
+
+      
+    }
+
+    .photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* Stack gracefully on smaller screens */
+@media (max-width: 1000px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.photo-item h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER (perfect match to index) -->
+  <header>
+    <div class="wrap">
+      <div style="font-weight:800">Kevin&nbsp;Lu</div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about_me.html" style="color:var(--accent);">About Me</a>
+        <a href="quotes.html">Quotes</a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <img src="icons/sun.svg" class="sun-icon" />
+          <img src="icons/moon.svg" class="moon-icon" style="display:none;" />
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>About Me</h1>
+    <p class="muted">Some things I enjoy doing outside of research!</p>
+
+    <div class="photo-grid">
+
+    <div class="photo-item">
+        <h2>Carrying Sheep 🐑</h2>
+        <div class="photo-card">
+        <img src="about_me_pictures/carrying_sheep.JPG" alt="Carrying sheep">
+        <div class="caption">Petting Zoo while interning at Takeda Pharmaceuticals!</div>
+        </div>
+    </div>
+    <div class="photo-item">
+        <h2>Hiking ⛰️</h2>
+        <div class="photo-card">
+        <img src="about_me_pictures/hiking1.jpg" alt="Hiking">
+        <div class="caption">Mt. Katahdin in my home state of Maine!</div>
+        </div>
+    </div>
+    <div class="photo-item">
+        <h2>Triathlons 🏊‍♂️🚴‍♂️🏃‍♂️</h2>
+        <div class="photo-card">
+        <img src="about_me_pictures/triathlons.jpg" alt="Triathlons">
+        <div class="caption">2025 Boston Triathlon with my little brother! I usually do a sprint or Olympic triathlon every summer :)</div>
+        </div>
+    </div>
+</div>
+<h2 style="margin-top:48px;">Some of my favorite articles that I wrote for Northeastern's Science Magazine:</h2>
+
+<div class="photo-grid">
+
+  <!-- Article 1 -->
+  <div class="photo-item">
+    <a href="https://nuscimagazine.com/genetic-programming-how-machine-learning-is-evolving-to-solve-math-problems/"
+       target="_blank" rel="noopener">
+      <h2>Genetic programming: How machine learning is evolving to solve math problems</h2>
+      <div class="photo-card">
+        <img src="about_me_pictures/genetic_programming.jpeg" alt="Article 1">
+      </div>
+    </a>
+    <div class="caption">
+      In 1859, Charles Darwin published his groundbreaking theory of evolution in “On the Origin of Species,” introducing natural selection...
+    </div>
+  </div>
+
+  <!-- Article 2 -->
+  <div class="photo-item">
+    <a href="https://nuscimagazine.com/making-ai-more-human-a-conversation-with-northeastern-ai-professor-lawson-wong/"
+       target="_blank" rel="noopener">
+      <h2>Making AI more “human”: A conversation with Northeastern AI professor Lawson Wong</h2>
+      <div class="photo-card">
+        <img src="about_me_pictures/artificial_intelligence.jpg" alt="Article 2">
+      </div>
+    </a>
+    <div class="caption">
+      What is “intelligence”? Large language models like ChatGPT have showcased an impressive ability to generate human-like responses...
+    </div>
+  </div>
+
+  <!-- Article 3 -->
+  <div class="photo-item">
+    <a href="https://nuscimagazine.com/trials-of-the-golden-fleece-what-bees-must-overcome-when-collecting-pollen/"
+       target="_blank" rel="noopener">
+      <h2>Trials of the Golden Fleece: What bees must overcome when collecting pollen</h2>
+      <div class="photo-card">
+        <img src="about_me_pictures/golden_fleece.jpg" alt="Article 3">
+      </div>
+    </a>
+    <div class="caption">
+      Contrary to our peaceful perception of the humble bee, foraging for pollen can be a treacherous journey...
+    </div>
+  </div>
+
+</div>
+
+
+  </main>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const sun = themeToggle.querySelector(".sun-icon");
+    const moon = themeToggle.querySelector(".moon-icon");
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+      sun.style.display = "none";
+      moon.style.display = "block";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      const isDark = document.body.classList.toggle("dark-mode");
+
+      sun.style.display = isDark ? "none" : "block";
+      moon.style.display = isDark ? "block" : "none";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+  </script>
+
+</body>
+</html>

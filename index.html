@@ -84,9 +84,10 @@ body.dark-mode {
     <div class="wrap">
       <div style="font-weight:800">Kevin&nbsp;Lu</div>
       <nav>
-        <a href="#Publications & Presentations">Publications & Presentations</a>
         <a href="about_me.html"> About Me </a>
         <a href="quotes.html">Quotes</a>
+        <a href="Kevin%20Lu%20CV.pdf" target="_blank">CV</a>
+        
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
           <img src="icons/sun.svg" alt="Sun" class="sun-icon" />
           <img src="icons/moon.svg" alt="Moon" class="moon-icon" style="display: none;" />
@@ -110,11 +111,11 @@ body.dark-mode {
         </div>
       </div>
       <div class="card">
-        <h2 style="margin-top: 8px;">Concept Erasure & Steering Protein Design</h2>
-        <p class="muted">I work on mechanistic interpretability of text to image diffusion models & protein language models. Currently an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Bau Lab</a> and a co-op at Takeda Pharmaceuticals training SAEs for antibody protein design! I'm interested in CS PhD programs focused on accelerating and interpreting drug discovery pipelines.</p>
+        <h2 style="margin-top: 8px;">Bio</h2>
+        <p class="muted">I'm Kevin, a machine learning intern at <a href="https://www.takeda.com/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Takeda Pharmaceuticals</a> (training SAEs for antibody protein design) and an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Bau Lab</a>. I'm working on mechanistic interpretability of text-to-image diffusion models, protein language models, and protein structure generators. I'm interested in CS PhD programs focused on accelerating and interpreting drug discovery pipelines. <br><br> <strong>Check out this interactive "PatchScope" demo!</strong> --> </p>
       </div>
       <div class="card">
-        <div class="kicker">Protein Folding (ESM Folding Trunk Logit Lens)</div>
+        <div class="kicker">PatchScope of ESMFold trunk across layers of language model encoder</div>
         <div class="controls">
           <div class="progress-bar" id="progress-bar">
             <div class="progress-fill" id="progress-fill"></div>
@@ -150,11 +151,11 @@ body.dark-mode {
       <script id="pubs-fallback" type="application/json">{
         "entries": [
           {
-            "title": "When Are Concepts Erased From Diffusion Models?",
+            "title": "<a href='https://unerasing.baulab.info/' target='_blank' rel='noopener'>When Are Concepts Erased From Diffusion Models?</a>",
             "authors": ["Kevin Lu", "Nicky Kriplani", "Rohit Gandikota", "Minh Pham", "David Bau", "Chinmay Hegde", "Niv Cohen"],
             "venue": "<a href='https://neurips.cc/Conferences/2025/Dates' target='_blank' rel='noopener'><strong style='color: var(--accent);'>NeurIPS</strong></a> 2025 (Poster)",
             "year": 2025,
-            "paper": "#",
+            "paper": "https://unerasing.baulab.info/",
             "code": "https://github.com/kevinlu4588/DiffusionConceptErasure",
             "arxiv": "https://arxiv.org/abs/2505.17013",
             "thumbnail": "concept_erasure_thumbnail.png",
@@ -162,11 +163,11 @@ body.dark-mode {
             "tags": ["diffusion", "interpretability", "unlearning"]
           },
           {
-            "title": "To Bind or Not to Bind: Layer-wise Probing of ESM",
+            "title": "<a href='https://github.com/kevinlu4588/ESMProbing' target='_blank' rel='noopener'>To Bind or Not to Bind: Layer-wise Probing of ESM</a>",
             "authors": ["Kevin Lu", "David Bau"],
             "venue": "<a href='https://nemiconf.github.io/summer25/' target='_blank' rel='noopener'><strong style='color: var(--accent);'>NEMI</strong></a> Workshop 2025",
             "year": 2025,
-            "paper": "#",
+            "paper": "https://github.com/kevinlu4588/ESMProbing",
             "code": "https://github.com/kevinlu4588/ESMProbing",
             "thumbnail": "esm_probing_thumbnail.png",
             "abstract": "We investigate this question through the case study of TCR CDR3b–peptide binding, probing the Evolutionary Scale Model (ESM) with a combination of difference-of-means analyses, classifier training on intermediate embeddings, and causal ablation of attention heads. Our findings suggest that intermediate representations may be more informative than final embeddings for binding prediction.",
@@ -248,14 +249,14 @@ body.dark-mode {
         out.push(`<div class="kicker" style="margin-top:6px">${year}</div>`);
         for (const p of arr) {
           const authors = (p.authors||[]).join(', ');
-          const links = [ ['paper', p.paper], ['arxiv', p.arxiv], ['code', p.code] ]
+          const links = [ ['project page', p.paper], ['arxiv', p.arxiv], ['code', p.code] ]
             .filter(([,href]) => href && href !== '#')
             .map(([label, href]) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`)
             .join(' · ');
           const tags = (p.tags||[]).map(t=>`<span class="tag">${t}</span>`).join(' ');
 
           const thumbnail = p.thumbnail ? `
-            <a href="${p.arxiv || p.paper || '#'}" target="_blank" rel="noopener">
+            <a href="${p.paper || p.arxiv || '#'}" target="_blank" rel="noopener">
               <img src="${p.thumbnail}" alt="${p.title}" style="width:100%;max-width:200px;border-radius:8px;margin-bottom:8px;cursor:pointer;" />
             </a>
           ` : '';

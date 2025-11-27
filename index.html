@@ -112,8 +112,8 @@ body.dark-mode {
       </div>
       <div class="card">
         <h2 style="margin-top: 8px;">Bio</h2>
-        <p class="muted">I'm Kevin, a machine learning intern at <a href="https://www.takeda.com/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Takeda Pharmaceuticals</a> (training SAEs for antibody protein design) and an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Bau Lab</a>. I'm working on mechanistic interpretability of text-to-image diffusion models, protein language models, and protein structure generators. I'm interested in CS PhD programs focused on accelerating and interpreting drug discovery pipelines. <br><br> <strong>Check out this interactive PatchScope for ESMFold demo!</strong> --> </p>
       </div>
+      <p class="muted">I'm Kevin, a machine learning intern at <a href="https://www.takeda.com/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Takeda Pharmaceuticals</a> (training SAEs for antibody protein design) and an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Bau Lab</a>. I'm working on mechanistic interpretability of text-to-image diffusion models, protein language models, and protein structure generators. I'm interested in CS PhD programs focused on interpretable generative modeling and accelerating drug discovery pipelines. <br><br> <strong>Check out this interactive PatchScope for ESMFold demo!</strong> --> </p>
       <div class="card">
         <div class="kicker">PatchScope of ESMFold trunk across layers of language model encoder</div>
         <div class="controls">
@@ -160,18 +160,45 @@ body.dark-mode {
             "arxiv": "https://arxiv.org/abs/2505.17013",
             "thumbnail": "concept_erasure_thumbnail.png",
             "abstract": "We begin by proposing two conceptual models for the erasure mechanism in diffusion models: (i) reducing the likelihood of generating the target concept, and (ii) interfering with the model's internal guidance mechanisms. To thoroughly assess whether a concept has been truly erased from the model, we introduce a suite of independent evaluations.",
-            "tags": ["diffusion", "interpretability", "unlearning"]
+            "tags": ["Diffusion", "Guidance Methods", "Concept Unlearning"],
+            "note": "Earlier version published in CVPR 2025 2nd Workshop on Visual Concepts as <a href='https://openreview.net/forum?id=2oPnPUcAEf' target='_blank' rel='noopener'>'Where Do Concepts Go in Diffusion Models?'</a>"
           },
+
           {
             "title": "<a href='https://github.com/kevinlu4588/ESMProbing' target='_blank' rel='noopener'>To Bind or Not to Bind: Layer-wise Probing of ESM</a>",
             "authors": ["Kevin Lu", "David Bau"],
             "venue": "<a href='https://nemiconf.github.io/summer25/' target='_blank' rel='noopener'><strong style='color: var(--accent);'>NEMI</strong></a> Workshop 2025",
             "year": 2025,
-            "paper": "https://github.com/kevinlu4588/ESMProbing",
+            "pdf": "NEMI_ESM_Dissection.pdf",
             "code": "https://github.com/kevinlu4588/ESMProbing",
             "thumbnail": "esm_probing_thumbnail.png",
             "abstract": "We investigate this question through the case study of TCR CDR3b–peptide binding, probing the Evolutionary Scale Model (ESM) with a combination of difference-of-means analyses, classifier training on intermediate embeddings, and causal ablation of attention heads. Our findings suggest that intermediate representations may be more informative than final embeddings for binding prediction.",
-            "tags": ["proteins", "ESM", "probing"]
+            "tags": ["Protein Language Models", "Representation Analysis"]
+          }
+        ]
+      }</script>
+    </section>
+
+    <section id="Work in Progress" style="margin-top: 28px;">
+      <h2>Work in Progress</h2>
+      <div id="wip" class="card" style="margin-top: 12px"></div>
+
+      <script id="wip-fallback" type="application/json">{
+        "entries": [
+          {
+            "title": "Sparse Feature Steering Enables Targeted Antibody Sequence Optimization",
+            "authors": ["Kevin Lu", "Shipra Malhotra"],
+            "venue": "Preprint to be released upon legal approval.",
+            "year": 2025,
+            "thumbnail": "Temp_SAE_Thumbnail.png",
+            "abstract": "We present a framework for interpretable antibody sequence optimization by extracting sparse features from protein language model representations. These features enable targeted modifications to CDR regions toward improved developability characteristics (thermostability, reduced polyspecificity) while preserving target binding affinity.",
+            "tags": ["Sparse Autoencoders", "Sequence Optimization", "Experimental Validation"]
+          },
+          {
+            "title": "How Does ESMFold Fold Protein Structures?",
+            "thumbnail": "Folding.png",
+            "abstract": "Protein structure prediction models like ESMFold achieve remarkable accuracy, yet the computational mechanisms by which they convert sequence representations into three-dimensional structures remain poorly understood. We investigate how ESMFold constructs folded conformations by applying mechanistic interpretability techniques to the folding trunk.",
+            "tags": ["Protein Folding", "Mechanistic Interpretability"]
           }
         ]
       }</script>
@@ -249,7 +276,7 @@ body.dark-mode {
         out.push(`<div class="kicker" style="margin-top:6px">${year}</div>`);
         for (const p of arr) {
           const authors = (p.authors||[]).join(', ');
-          const links = [ ['project page', p.paper], ['arxiv', p.arxiv], ['code', p.code] ]
+          const links = [ ['project page', p.paper], ['arxiv', p.arxiv], ['pdf', p.pdf], ['code', p.code]]
             .filter(([,href]) => href && href !== '#')
             .map(([label, href]) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`)
             .join(' · ');
@@ -262,6 +289,7 @@ body.dark-mode {
           ` : '';
 
           const abstract = p.abstract ? `<div class="muted" style="margin-top:8px;font-size:14px;line-height:1.5;">${p.abstract}</div>` : '';
+          const note = p.note ? `<div class="muted" style="margin-top:8px;font-size:13px;font-style:italic;line-height:1.5;"><strong>Note:</strong> ${p.note}</div>` : '';
 
           out.push(`
             <div style="padding:14px 0;border-bottom:1px solid color-mix(in oklab, var(--fg) 10%, transparent);display:flex;gap:16px;">
@@ -271,6 +299,7 @@ body.dark-mode {
                 <div class="muted">${authors}</div>
                 ${p.venue ? `<div class="muted" style="margin-top:4px;">${p.venue}</div>` : ''}
                 ${abstract}
+                ${note}
                 <div class="row" style="margin-top:6px">
                   <div>${tags}</div>
                   <div>${links}</div>
@@ -283,9 +312,64 @@ body.dark-mode {
       pubsEl.innerHTML = out.join('') || '<div class="muted">No publications found.</div>';
     }
 
+    async function loadWIP() {
+      try {
+        const res = await fetch('wip.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('No external wip.json');
+        const data = await res.json();
+        return data.entries ?? [];
+      } catch (e) {
+        const inline = $$("#wip-fallback").textContent;
+        try { return JSON.parse(inline).entries ?? []; } catch { return []; }
+      }
+    }
+
+    function renderWIP(items) {
+      const wipEl = $$("#wip");
+      const out = [];
+
+      for (const p of items) {
+        const authors = (p.authors||[]).join(', ');
+        const links = [ ['project page', p.paper], ['arxiv', p.arxiv], ['pdf', p.pdf], ['code', p.code]]
+          .filter(([,href]) => href && href !== '#')
+          .map(([label, href]) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`)
+          .join(' · ');
+        const tags = (p.tags||[]).map(t=>`<span class="tag">${t}</span>`).join(' ');
+
+        const thumbnail = p.thumbnail ? `
+          <a href="${p.paper || p.arxiv || '#'}" target="_blank" rel="noopener">
+            <img src="${p.thumbnail}" alt="${p.title}" style="width:100%;max-width:200px;border-radius:8px;margin-bottom:8px;cursor:pointer;" />
+          </a>
+        ` : '';
+
+        const abstract = p.abstract ? `<div class="muted" style="margin-top:8px;font-size:14px;line-height:1.5;">${p.abstract}</div>` : '';
+
+        out.push(`
+          <div style="padding:14px 0;border-bottom:1px solid color-mix(in oklab, var(--fg) 10%, transparent);display:flex;gap:16px;">
+            ${thumbnail ? `<div style="flex-shrink:0;">${thumbnail}</div>` : ''}
+            <div style="flex:1;">
+              <div style="font-weight:700">${p.title}</div>
+              <div class="muted">${authors}</div>
+              ${p.venue ? `<div class="muted" style="margin-top:4px;">${p.venue}</div>` : ''}
+              ${abstract}
+              <div class="row" style="margin-top:6px">
+                <div>${tags}</div>
+                <div>${links}</div>
+              </div>
+            </div>
+          </div>
+        `);
+      }
+      wipEl.innerHTML = out.join('') || '<div class="muted">No work in progress.</div>';
+    }
+
     (async () => {
       const items = await loadPublications();
       renderPublications(items);
+
+      const wipItems = await loadWIP();
+      renderWIP(wipItems);
+
       $$("#year").textContent = new Date().getFullYear();
     })();
 

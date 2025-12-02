@@ -173,6 +173,7 @@ body.dark-mode {
             "code": "https://github.com/kevinlu4588/ESMProbing",
             "thumbnail": "esm_probing_thumbnail.png",
             "abstract": "We investigate this question through the case study of TCR CDR3b–peptide binding, probing the Evolutionary Scale Model (ESM) with a combination of difference-of-means analyses, classifier training on intermediate embeddings, and causal ablation of attention heads. Our findings suggest that intermediate representations may be more informative than final embeddings for binding prediction.",
+            "poster": "/Users/kevinlu/kevinlu4588.github.io/NEMI TCR ESM Poster.png",
             "tags": ["Protein Language Models", "Representation Analysis"]
           }
         ]
@@ -203,7 +204,25 @@ body.dark-mode {
         ]
       }</script>
     </section>
+<section id="Projects" style="margin-top: 28px;">
+      <h2>Projects</h2>
+      <div id="projects" class="card" style="margin-top: 12px"></div>
 
+      <script id="project-fallback" type="application/json">{
+        "entries": [
+          {
+            "title": "Latent Space Exploration for Erased Concepts in Diffusion Models",
+            "authors": ["Kevin Lu"],
+            "venue": "Course project for MATH 7223: Riemannian Optimization",
+            "year": 2025,
+            "thumbnail": "Shifted Latents.png",
+            "pdf": "MATH_7223_Riemannian_Optimization.pdf",
+            "abstract": "I study the optimization landscape underlying erased diffusion-model concepts, using Riemannian tools such as pullback metrics and parallel transport to characterize semantically meaningful latent directions. The project shows that geometry-aware optimization significantly outperforms naive gradient methods, revealing residual structure on the latent manifold even after targeted concept removal.",
+            "tags": ["Riemannian Optimization", "Diffusion Models", "Geometry"]
+          }
+        ]
+      }</script>
+    </section>
     <footer>
       <div class="row">
         <div>© <span id="year"></span> Kevin Lu</div>
@@ -275,7 +294,7 @@ body.dark-mode {
         out.push(`<div class="kicker" style="margin-top:6px">${year}</div>`);
         for (const p of arr) {
           const authors = (p.authors||[]).join(', ');
-          const links = [ ['project page', p.paper], ['arxiv', p.arxiv], ['pdf', p.pdf], ['code', p.code]]
+          const links = [ ['project page', p.paper], ['arxiv', p.arxiv], ['pdf', p.pdf], ['code', p.code], ['poster', p.poster]]
             .filter(([,href]) => href && href !== '#')
             .map(([label, href]) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`)
             .join(' · ');
@@ -362,12 +381,66 @@ body.dark-mode {
       wipEl.innerHTML = out.join('') || '<div class="muted">No work in progress.</div>';
     }
 
+    async function loadProjects() {
+      try {
+        const res = await fetch('projects.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('No external projects.json');
+        const data = await res.json();
+        return data.entries ?? [];
+      } catch (e) {
+        const inline = $$("#project-fallback").textContent;
+        try { return JSON.parse(inline).entries ?? []; } catch { return []; }
+      }
+    }
+
+    function renderProjects(items) {
+      const projectsEl = $$("#projects");
+      const out = [];
+
+      for (const p of items) {
+        const authors = (p.authors||[]).join(', ');
+        const links = [ ['project page', p.paper], ['arxiv', p.arxiv], ['pdf', p.pdf], ['code', p.code]]
+          .filter(([,href]) => href && href !== '#')
+          .map(([label, href]) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`)
+          .join(' · ');
+        const tags = (p.tags||[]).map(t=>`<span class="tag">${t}</span>`).join(' ');
+
+        const thumbnail = p.thumbnail ? `
+          <a href="${p.paper || p.pdf || '#'}" target="_blank" rel="noopener">
+            <img src="${p.thumbnail}" alt="${p.title}" style="width:100%;max-width:200px;border-radius:8px;margin-bottom:8px;cursor:pointer;" />
+          </a>
+        ` : '';
+
+        const abstract = p.abstract ? `<div class="muted" style="margin-top:8px;font-size:14px;line-height:1.5;">${p.abstract}</div>` : '';
+
+        out.push(`
+          <div style="padding:14px 0;border-bottom:1px solid color-mix(in oklab, var(--fg) 10%, transparent);display:flex;gap:16px;">
+            ${thumbnail ? `<div style="flex-shrink:0;">${thumbnail}</div>` : ''}
+            <div style="flex:1;">
+              <div style="font-weight:700">${p.title}</div>
+              ${authors ? `<div class="muted">${authors}</div>` : ''}
+              ${p.venue ? `<div class="muted" style="margin-top:4px;">${p.venue}</div>` : ''}
+              ${abstract}
+              <div class="row" style="margin-top:6px">
+                <div>${tags}</div>
+                <div>${links}</div>
+              </div>
+            </div>
+          </div>
+        `);
+      }
+      projectsEl.innerHTML = out.join('') || '<div class="muted">No projects found.</div>';
+    }
+
     (async () => {
       const items = await loadPublications();
       renderPublications(items);
 
       const wipItems = await loadWIP();
       renderWIP(wipItems);
+
+      const projectItems = await loadProjects();
+      renderProjects(projectItems);
 
       $$("#year").textContent = new Date().getFullYear();
     })();

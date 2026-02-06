@@ -112,7 +112,7 @@ body.dark-mode {
       </div>
       <div class="card">
         <h2 style="margin-top: 8px;">Bio</h2>
-        <p class="muted">I'm Kevin, a machine learning intern at <a href="https://www.takeda.com/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Takeda Pharmaceuticals</a> (training SAEs for antibody protein design) and an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Bau Lab</a>. I'm working on mechanistic interpretability of text-to-image diffusion models, protein language models, and protein structure generators. I'm interested in CS PhD programs focused on interpretable generative modeling and accelerating drug discovery pipelines. <br><br> <i>Check out this interactive "DecoderLens" for ESMFold demo!</i> --> <br> <i> How does ESM-2 build up useful structural information across layers?</i></p>
+        <p class="muted">I'm Kevin, I'm an undergraduate researcher in the <a href="https://baulab.info/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Bau Lab</a>. I'm working on mechanistic interpretability of text-to-image diffusion models, protein language models, and protein structure generators. I'm interested in CS PhD programs focused on interpretable generative modeling and accelerating drug discovery pipelines. <br><br> <i>Check out this interactive "DecoderLens" for ESMFold demo!</i> --> <br> <i> How does ESM-2 build up useful structural information across layers?</i></p>
       </div>
       <div class="card">
         <div class="kicker">DecoderLens ESM language model encoder using folding trunk</div>
@@ -134,6 +134,8 @@ body.dark-mode {
       <div class="card">
         <div class="kicker">News</div>
         <ul class="list" id="news">
+          <li><strong>Feb 2026</strong> — New preprint <a href="https://folding.baulab.info/" target="_blank" rel="noopener"><em>Mechanisms of AI Protein Folding in ESMFold</em></a> investigating the computational mechanisms of protein structure prediction released! <a href="https://arxiv.org/abs/2602.06020" target="_blank" rel="noopener"><strong style="color: var(--accent);">[arXiv]</strong></a></li>
+          <li><strong>Feb 2026</strong> — Serving as a reviewer for <a href="https://www.gembio.ai/" target="_blank" rel="noopener"><strong style="color: var(--accent);">ICLR GEM Bio Workshop.</strong></a> </li>
           <li><strong>Nov 2025</strong> — Served as a reviewer for <a href="https://iclr.cc/" target="_blank" rel="noopener"><strong style="color: var(--accent);">ICLR Main Conference (Geometric Deep Learning).</strong></a> </li>
           <li><strong>Sep 2025</strong> — Our paper <em>When are concepts erased from diffusion models?</em> accepted to <a href="https://neurips.cc/Conferences/2025/Dates" target="_blank" rel="noopener"><strong style="color: var(--accent);">NeurIPS</strong></a> Main Track!</li>
           <li><strong>Aug 2025</strong> — Served as a reviewer for <a href="https://neurips.cc/Conferences/2025/Dates" target="_blank" rel="noopener"><strong style="color: var(--accent);">NeurIPS</strong></a> <a href="https://mechinterpworkshop.com/" target="_blank" rel="noopener">Mechanistic Interpretability Workshop</a>.</li>
@@ -150,6 +152,17 @@ body.dark-mode {
 
       <script id="pubs-fallback" type="application/json">{
         "entries": [
+          {
+            "title": "<a href='https://folding.baulab.info/' target='_blank' rel='noopener'>Mechanisms of AI Protein Folding in ESMFold</a>",
+            "authors": ["Kevin Lu", "Jannik Brinkmann", "Stefan Huber", "Aaron Mueller", "Yonatan Belinkov", "David Bau", "Chris Wendler"],
+            "venue": "Preprint",
+            "year": 2025,
+            "paper": "https://folding.baulab.info/",
+            "arxiv": "https://arxiv.org/abs/2602.06020",
+            "thumbnail": "Folding.png",
+            "abstract": "How do protein structure prediction models fold proteins? We investigate this question by tracing how ESMFold folds a beta hairpin, a prevalent structural motif. Through counterfactual interventions on model latents, we identify two computational stages in the folding trunk. In the first stage, early blocks initialize pairwise biochemical signals: residue identities and associated biochemical features like charge flow from sequence representations into pairwise representations. In the second stage, late blocks develop pairwise spatial features: distance and contact information accumulate in the pairwise representation. We demonstrate that the mechanisms underlying structural decisions of ESMFold can be localized, traced through interpretable representations, and manipulated with strong causal effects.",
+            "tags": ["Protein Folding", "Mechanistic Interpretability"]
+          },
           {
             "title": "<a href='https://unerasing.baulab.info/' target='_blank' rel='noopener'>When Are Concepts Erased From Diffusion Models?</a>",
             "authors": ["Kevin Lu", "Nicky Kriplani", "Rohit Gandikota", "Minh Pham", "David Bau", "Chinmay Hegde", "Niv Cohen"],
@@ -194,12 +207,6 @@ body.dark-mode {
             "thumbnail": "Temp_SAE_Thumbnail.png",
             "abstract": "We present a framework for interpretable antibody sequence optimization by extracting sparse features from protein language model representations. These features enable targeted modifications to CDR regions toward improved developability characteristics (thermostability, reduced polyspecificity) while preserving target binding affinity.",
             "tags": ["Sparse Autoencoders", "Sequence Optimization", "Experimental Validation"]
-          },
-          {
-            "title": "How Does ESMFold Fold Protein Structures?",
-            "thumbnail": "Folding.png",
-            "abstract": "Protein structure prediction models like ESMFold achieve remarkable accuracy, yet the computational mechanisms by which they convert sequence representations into three-dimensional structures remain poorly understood. We investigate how ESMFold constructs folded conformations by applying mechanistic interpretability techniques to the folding trunk.",
-            "tags": ["Protein Folding", "Mechanistic Interpretability"]
           }
         ]
       }</script>

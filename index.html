@@ -3,12 +3,147 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kevin Lu — Academic Website</title>
-  <meta name="description" content="Research, publications, talks, teaching, and projects." />
-  <meta property="og:title" content="Kevin Lu — Academic Website" />
-  <meta property="og:description" content="Research, publications, talks, teaching, and projects." />
+
+  <!-- =============================================
+       PRIMARY META — what Google reads & displays
+       ============================================= -->
+  <title>Kevin Lu | Northeastern University — Mechanistic Interpretability & Protein AI Research</title>
+  <meta name="description" content="Kevin Lu is an undergraduate researcher at Northeastern University's Bau Lab studying mechanistic interpretability of protein language models, diffusion models, and protein structure prediction. Published at NeurIPS 2025 and CVPR 2025." />
+  <meta name="keywords" content="Kevin Lu, Northeastern University, Bau Lab, mechanistic interpretability, protein language models, ESMFold, diffusion models, concept erasure, NeurIPS, CVPR, AI drug discovery, protein folding" />
+  <meta name="author" content="Kevin Lu" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL — UPDATE with your real domain -->
+  <link rel="canonical" href="https://kevinlu4588.github.io/" />
+
+  <!-- =============================================
+       OPEN GRAPH (Facebook, LinkedIn, iMessage, etc.)
+       ============================================= -->
   <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kevin Lu | Northeastern University — Mechanistic Interpretability & Protein AI Research" />
+  <meta property="og:description" content="Undergraduate researcher at Northeastern's Bau Lab. Mechanistic interpretability of protein language models and diffusion models. Published at NeurIPS 2025 & CVPR 2025." />
+  <meta property="og:url" content="https://kevinlu4588.github.io/" />
+  <meta property="og:image" content="https://kevinlu4588.github.io/PFP.png" />
+  <meta property="og:image:alt" content="Kevin Lu — Northeastern University researcher" />
+  <meta property="og:site_name" content="Kevin Lu — Academic Website" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- =============================================
+       TWITTER / X CARD
+       ============================================= -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@kevinlu4588" />
+  <meta name="twitter:creator" content="@kevinlu4588" />
+  <meta name="twitter:title" content="Kevin Lu | Northeastern University — Mechanistic Interpretability & Protein AI Research" />
+  <meta name="twitter:description" content="Undergraduate researcher at Northeastern's Bau Lab. Mechanistic interpretability of protein language models and diffusion models. Published at NeurIPS 2025 & CVPR 2025." />
+  <meta name="twitter:image" content="https://kevinlu4588.github.io/PFP.png" />
+
+  <!-- =============================================
+       STRUCTURED DATA (JSON-LD) — the biggest SEO win
+       This tells Google exactly who you are as an entity.
+       ============================================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Kevin Lu",
+      "givenName": "Kevin",
+      "familyName": "Lu",
+      "url": "https://kevinlu4588.github.io/",
+      "image": "https://kevinlu4588.github.io/PFP.png",
+      "email": "lu.kev@northeastern.edu",
+      "jobTitle": "Undergraduate Researcher",
+      "affiliation": {
+        "@type": "EducationalOrganization",
+        "name": "Northeastern University",
+        "url": "https://www.northeastern.edu/",
+        "department": {
+          "@type": "Organization",
+          "name": "Bau Lab",
+          "url": "https://baulab.info/"
+        }
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Northeastern University"
+      },
+      "knowsAbout": [
+        "Mechanistic Interpretability",
+        "Protein Language Models",
+        "ESMFold",
+        "Diffusion Models",
+        "Concept Erasure",
+        "Sparse Autoencoders",
+        "Antibody Optimization",
+        "Drug Discovery",
+        "Protein Structure Prediction"
+      ],
+      "sameAs": [
+        "https://github.com/kevinlu4588",
+        "https://www.linkedin.com/in/kevin-lu-4588-/",
+        "https://x.com/kevinlu4588",
+        "https://scholar.google.com/citations?user=0NU0lBUAAAAJ&hl=en"
+      ],
+      "description": "Undergraduate researcher at Northeastern University's Bau Lab studying mechanistic interpretability of protein language models, diffusion models, and protein structure prediction."
+    }
+  }
+  </script>
+
+  <!-- Separate structured data for your key publications -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Publications by Kevin Lu",
+    "itemListElement": [
+      {
+        "@type": "ScholarlyArticle",
+        "position": 1,
+        "name": "Mechanisms of AI Protein Folding in ESMFold",
+        "author": [
+          {"@type": "Person", "name": "Kevin Lu"},
+          {"@type": "Person", "name": "Jannik Brinkmann"},
+          {"@type": "Person", "name": "Stefan Huber"},
+          {"@type": "Person", "name": "Aaron Mueller"},
+          {"@type": "Person", "name": "Yonatan Belinkov"},
+          {"@type": "Person", "name": "David Bau"},
+          {"@type": "Person", "name": "Chris Wendler"}
+        ],
+        "url": "https://folding.baulab.info/",
+        "sameAs": "https://arxiv.org/abs/2602.06020",
+        "datePublished": "2026-02"
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "position": 2,
+        "name": "When Are Concepts Erased From Diffusion Models?",
+        "author": [
+          {"@type": "Person", "name": "Kevin Lu"},
+          {"@type": "Person", "name": "Nicky Kriplani"},
+          {"@type": "Person", "name": "Rohit Gandikota"},
+          {"@type": "Person", "name": "Minh Pham"},
+          {"@type": "Person", "name": "David Bau"},
+          {"@type": "Person", "name": "Chinmay Hegde"},
+          {"@type": "Person", "name": "Niv Cohen"}
+        ],
+        "url": "https://unerasing.baulab.info/",
+        "sameAs": "https://arxiv.org/abs/2505.17013",
+        "datePublished": "2025",
+        "publisher": {"@type": "Organization", "name": "NeurIPS 2025"}
+      }
+    ]
+  }
+  </script>
+
+  <!-- =============================================
+       EXISTING ASSETS
+       ============================================= -->
   <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+
+  <!-- Favicon (add if you don't have one — helps with branding in tabs/bookmarks) -->
+  <!-- <link rel="icon" href="/favicon.ico" type="image/x-icon" /> -->
   <style>
  :root {
   --bg: #f8f9fa;       /* light gray background - clean and professional */
@@ -134,7 +269,7 @@ body.dark-mode {
       <div class="card">
         <div class="kicker">News</div>
         <ul class="list" id="news">
-          <li><strong>Feb 2026</strong> — New preprint <a href="https://folding.baulab.info/" target="_blank" rel="noopener"><em>Mechanisms of AI Protein Folding in ESMFold</em></a> investigating the computational mechanisms of protein structure prediction released! <a href="https://arxiv.org/abs/2602.06020" target="_blank" rel="noopener"><strong style="color: var(--accent);">[arXiv]</strong></a> Also going to present this work at the Flatiron Institute 2/20!</li>
+          <li><strong>Feb 2026</strong> — New preprint <a href="https://folding.baulab.info/" target="_blank" rel="noopener"><em>Mechanisms of AI Protein Folding in ESMFold</em></a> investigating the computational mechanisms of protein structure prediction released! <a href="https://arxiv.org/abs/2602.06020" target="_blank" rel="noopener"><strong style="color: var(--accent);">[arXiv]</strong></a> Also going to present this work at the <a href="https://www.simonsfoundation.org/flatiron/" target="_blank" rel="noopener">Flatiron Institute</a> on Friday 2/20!</li>
           <li><strong>Feb 2026</strong> — Serving as a reviewer for <a href="https://scienceofdlworkshop.github.io/" target="_blank" rel="noopener"><strong style="color: var(--accent);">ICLR Scientific Methods for Deep Learning Workshop.</strong></a> </li>
           <li><strong>Nov 2025</strong> — Served as a reviewer for <a href="https://iclr.cc/" target="_blank" rel="noopener"><strong style="color: var(--accent);">ICLR Main Conference (Geometric Deep Learning).</strong></a> </li>
           <li><strong>Sep 2025</strong> — Our paper <em>When are concepts erased from diffusion models?</em> accepted to <a href="https://neurips.cc/Conferences/2025/Dates" target="_blank" rel="noopener"><strong style="color: var(--accent);">NeurIPS</strong></a> Main Track!</li>

@@ -1,0 +1,144 @@
+%-------------------------------------------------------------------------------
+% Kevin Lu — Curriculum Vitae
+% Compiles with pdflatex on Overleaf / TeX Live (standard packages only).
+%-------------------------------------------------------------------------------
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{XCharter}
+\usepackage[margin=0.75in,top=0.65in,bottom=0.7in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{accent}{HTML}{1F3A93}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+% ---- section style: small caps heading with a thin rule ----
+\titleformat{\section}{\large\scshape\color{accent}}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+
+% ---- page style: name + page number from page 2 on ----
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\ifnum\value{page}>1 \small\textit{Kevin Lu --- Curriculum Vitae (September 2026)}\fi}
+\fancyhead[R]{\ifnum\value{page}>1 \small\thepage\fi}
+\setlength{\headheight}{13pt}
+
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.2em, itemsep=1pt, topsep=2pt, parsep=0pt}
+
+% ---- helpers ----
+% \entry{Organization}{Dates}{Role}{Location}
+\newcommand{\entry}[4]{%
+  \textbf{#1} \hfill #2\\
+  \textit{#3} \hfill {\small #4}\par}
+% \oneline{Left}{Right}
+\newcommand{\oneline}[2]{#1 \hfill #2\par}
+\newcommand{\me}{\textbf{Kevin Lu}}
+\newcommand{\gap}{\vspace{6pt}}
+
+% numbered publication lists: [C1], [W1], ...
+\newlist{pubs}{enumerate}{1}
+\setlist[pubs]{label={[\arabic*]}, leftmargin=2.4em, itemsep=3pt, topsep=2pt}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\begin{center}
+  {\LARGE\scshape Kevin Lu}\\[4pt]
+  PhD Student, Khoury College of Computer Sciences, Northeastern University\\[2pt]
+  \small
+  \href{mailto:lu.kev@northeastern.edu}{lu.kev@northeastern.edu} \;$\cdot$\;
+  \href{https://kevinlu4588.github.io}{kevinlu4588.github.io} \;$\cdot$\;
+  \href{https://scholar.google.com/citations?user=0NU0lBUAAAAJ}{Google Scholar} \;$\cdot$\;
+  \href{https://github.com/kevinlu4588}{github.com/kevinlu4588}
+\end{center}
+
+%-------------------------------------------------------------------------------
+\section{Research Interests}
+Mechanistic interpretability of biological foundation models (protein structure prediction, protein
+language models, and cell models), and using what these models have learned to accelerate drug discovery.
+
+%-------------------------------------------------------------------------------
+\section{Education}
+\entry{Northeastern University}{2026 -- present}{Ph.D. in Computer Science}{Boston, MA}
+Advisors: David Bau and Wengong Jin \;$\cdot$\; NSF Graduate Research Fellow
+\gap
+
+\entry{Northeastern University}{2022 -- 2026}{B.S. in Computer Science and Mathematics, Honors Program}{Boston, MA}
+GPA: 3.96/4.00
+
+%-------------------------------------------------------------------------------
+\section{Publications}
+\begin{pubs}
+  \item \me, Jannik Brinkmann, Stefan Huber, Aaron Mueller, Yonatan Belinkov, David Bau, Chris Wendler.
+        \href{https://folding.baulab.info/}{\textit{Two Stages of Folding: Convergent Mechanisms in AI Protein Folding Trunks.}}
+        Conference on Neural Information Processing Systems (\textbf{NeurIPS}), 2026.
+  \item \me, Nicky Kriplani, Rohit Gandikota, Minh Pham, David Bau, Chinmay Hegde, Niv Cohen.
+        \href{https://unerasing.baulab.info/}{\textit{When Are Concepts Erased From Diffusion Models?}}
+        Conference on Neural Information Processing Systems (\textbf{NeurIPS}), 2025.
+\end{pubs}
+
+%-------------------------------------------------------------------------------
+\section{Experience}
+\entry{OpenAI}{Apr 2026 -- May 2026}{Red Teaming Contractor}{Remote}
+\begin{itemize}
+  \item Analyzed the behavior of LLM agents for AI safety evaluation.
+\end{itemize}
+\gap
+
+\entry{Takeda Pharmaceuticals}{Jun 2025 -- Dec 2025}{Machine Learning Research Intern}{Cambridge, MA}
+\begin{itemize}
+  \item Trained sparse autoencoders on ESM-2 to extract interpretable antibody features and used feature steering to generate
+        10,000+ candidates; 192 variants were experimentally validated, with a 20\% increase in binding specificity.
+  \item Fine-tuned ESM-2 on 1.2M antibody sequences, improving CDR reconstruction accuracy by 32\%.
+\end{itemize}
+\gap
+
+\entry{Babel Street}{Jul 2024 -- Dec 2024}{Machine Learning Engineer Co-op}{Boston, MA}
+\begin{itemize}
+  \item Built a multithreaded pipeline that filters, embeds, and indexes 1\,TB/week of multilingual news into an
+        Elasticsearch vector database.
+  \item Developed a multi-agent LLM annotation system (LangGraph) with human-in-the-loop feedback, cutting annotation
+        costs by 25\%.
+\end{itemize}
+\gap
+
+\entry{Neural Systems Group, Harvard Medical School}{Jun 2023 -- May 2024}{Undergraduate Researcher}{Boston, MA}
+\begin{itemize}
+  \item Built Kalman-filter features from ECG waveforms and trained SVR models for blood pressure prediction, reaching
+        AAMI Grade B accuracy.
+\end{itemize}
+
+%-------------------------------------------------------------------------------
+\section{Fellowships and Awards}
+\oneline{\textbf{NSF Graduate Research Fellowship} \quad \textit{3-year fellowship, \$159,000 total support}}{2026}
+\oneline{\textbf{Honors Global Support Fund} \quad \textit{\$6,000 research grant}}{2025}
+\oneline{\textbf{Khoury Undergraduate Travel Award} (2$\times$) \quad \textit{\$1,000 conference travel grant}}{2025}
+\oneline{\textbf{John Martinson Honors Scholarship} \quad \textit{\$40,000/year merit scholarship}}{2022 -- 2026}
+
+%-------------------------------------------------------------------------------
+\section{Talks and Presentations}
+\oneline{\textbf{Flatiron Institute}, New York, NY \quad \textit{Mechanisms of AI Protein Folding}}{Feb 2026}
+\oneline{\textbf{New England Mechanistic Interpretability Workshop (NEMI)} \quad \textit{To Bind or Not to Bind}}{Aug 2025}
+\oneline{\textbf{CVPR Workshop on Generative Models for Vision} \quad \textit{Where Do Erased Concepts Go?}}{Jun 2025}
+
+%-------------------------------------------------------------------------------
+\section{Service}
+\textbf{Conference Reviewer:} NeurIPS 2026, ICLR 2026 \\
+\textbf{Workshop Reviewer:} ICLR 2026 (Scientific Methods for DL), NeurIPS 2025 (Mechanistic Interpretability)
+
+%-------------------------------------------------------------------------------
+\section{Leadership and Outreach}
+\oneline{\textbf{President}, Northeastern Veritas Forum}{2023 -- 2026}
+\oneline{\textbf{Community Lead}, InterVarsity Christian Fellowship}{2023 -- 2026}
+\oneline{\textbf{Editor, Web Developer, and Science Writer}, NU Sci Magazine}{2022 -- 2024}
+\oneline{\textbf{Teaching Aide}, Dr.\ Martin Luther King Jr.\ K--8 School}{2023}
+\oneline{\textbf{Elder Service Intern}, Action for Boston Community Development}{2022 -- 2023}
+
+\end{document}

@@ -107,6 +107,7 @@
           {"@type": "Person", "name": "Wengong Jin"}
         ],
         "url": "https://rumifold.baulab.info/",
+        "sameAs": "https://arxiv.org/abs/2611.29444",
         "datePublished": "2026"
       },
       {
@@ -392,11 +393,13 @@
         {
           "title": "RumiFold: Teaching an LLM to Natively Fold Proteins and Reason About Their Function",
           "authors": ["Kevin Lu", "David Bau", "Wengong Jin"],
-          "badge": "Preprint 2026",
-          "venue": "Preprint",
+          "venue": "arXiv preprint, 2026",
           "paper": "https://rumifold.baulab.info/",
-          "video": "rumifold/chat.mp4",
-          "thumbnail": "rumifold/chat_poster.jpg",
+          "arxiv": "https://arxiv.org/abs/2611.29444",
+          "code": "https://github.com/kevinlu4588/RumiFold",
+          "models": "https://huggingface.co/RumiFold",
+          "video": "rumifold/architecture.mp4",
+          "thumbnail": "rumifold/architecture_poster.jpg",
           "abstract": "Can we teach a general-purpose language model to fold proteins? We introduce RumiFold, a pretrained chat model that learns to predict protein structures directly from its own hidden states, then uses these folded representations to answer questions in natural language. It folds about as accurately as dedicated single-representation models such as SimpleFold, and reaches state-of-the-art performance on Gene Ontology function prediction and free-text function description. Folding organizes the model's hidden states around protein function, and causal interventions show that the model reads this folded workspace when it answers."
         },
         {
@@ -470,7 +473,7 @@
         const href = p.paper || p.arxiv || p.pdf;
         const title = href ? `<a href="${href}" target="_blank" rel="noopener">${p.title}</a>` : p.title;
         const authors = (p.authors || []).map(a => a === 'Kevin Lu' ? `<span class="me">${a}</span>` : a).join(', ');
-        const links = [['Project page', p.paper], ['arXiv', p.arxiv], ['PDF', p.pdf], ['Code', p.code], ['Poster', p.poster]]
+        const links = [['Project page', p.paper], ['arXiv', p.arxiv], ['PDF', p.pdf], ['Code', p.code], ['Models', p.models], ['Poster', p.poster]]
           .filter(([label, url]) => url && !(label === 'Project page' && url === p.code))
           .map(([label, url]) => `<a class="btn-link" href="${url}" target="_blank" rel="noopener">${label}</a>`)
           .join('');

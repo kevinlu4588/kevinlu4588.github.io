@@ -100,6 +100,18 @@
       {
         "@type": "ScholarlyArticle",
         "position": 1,
+        "name": "RumiFold: Teaching an LLM to Natively Fold Proteins and Reason About Their Function",
+        "author": [
+          {"@type": "Person", "name": "Kevin Lu"},
+          {"@type": "Person", "name": "David Bau"},
+          {"@type": "Person", "name": "Wengong Jin"}
+        ],
+        "url": "https://rumifold.baulab.info/",
+        "datePublished": "2026"
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "position": 2,
         "name": "Two Stages of Folding: Convergent Mechanisms in AI Protein Folding Trunks",
         "author": [
           {"@type": "Person", "name": "Kevin Lu"},
@@ -117,7 +129,7 @@
       },
       {
         "@type": "ScholarlyArticle",
-        "position": 2,
+        "position": 3,
         "name": "When Are Concepts Erased From Diffusion Models?",
         "author": [
           {"@type": "Person", "name": "Kevin Lu"},
@@ -257,6 +269,7 @@
     .thumb { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--stage); }
     .thumb img { width: 100%; display: block; transition: transform .3s; mix-blend-mode: multiply; }
     .thumb:hover img { transform: scale(1.03); }
+    .thumb video { width: 100%; display: block; }
     .entry-title { font-family: var(--serif); font-size: 22.5px; font-weight: 500; line-height: 1.3; margin: 0 0 6px; }
     .entry-title a { color: var(--fg); }
     .entry-title a:hover { color: var(--accent); text-decoration: none; }
@@ -316,7 +329,7 @@
           </div>
         </div>
         <p class="bio">I'm a PhD student at Northeastern working on AI for biology, advised by <a href="https://baulab.info/" target="_blank" rel="noopener">David Bau</a> and <a href="https://wengong-jin.github.io/" target="_blank" rel="noopener">Wengong Jin</a>. I use mechanistic interpretability to understand protein and cell foundation models, and I want to use what we learn to accelerate drug discovery.</p>
-        <p class="bio">Most recently, I've been reverse-engineering AI protein folding models (ESMFold, OpenFold, Boltz-1) to find out how they turn sequence chemistry into 3D structure.</p>
+        <p class="bio">Recently, I've been reverse-engineering AI protein folding models (ESMFold, OpenFold, Boltz-1) to find out how they turn sequence chemistry into 3D structure. I also taught a general-purpose language model to fold proteins in its own hidden states and reason about their function: <a href="https://rumifold.baulab.info/" target="_blank" rel="noopener">RumiFold</a>.</p>
         <div class="links">
           <a href="mailto:lu.kev@northeastern.edu"><img src="icons/email-color.svg" alt="">lu.kev@northeastern.edu</a>
           <a href="https://scholar.google.com/citations?user=0NU0lBUAAAAJ&hl=en" target="_blank" rel="noopener"><img src="icons/google-scholar-color.svg" alt="">Scholar</a>
@@ -352,6 +365,7 @@
         <div>
           <div class="section-head"><h2>News</h2></div>
           <ul class="timeline">
+            <li><span class="when">Nov 2026</span><span><span class="hl">New</span>Released <a href="https://rumifold.baulab.info/" target="_blank" rel="noopener"><em>RumiFold</em></a>, a chat model that folds proteins in its own hidden states and then reasons about their function.</span></li>
             <li><span class="when">Sep 2026</span><span><span class="hl">NeurIPS</span><a href="https://folding.baulab.info/" target="_blank" rel="noopener"><em>Two Stages of Folding: Convergent Mechanisms in AI Protein Folding Trunks</em></a> was accepted to NeurIPS 2026! The new version extends our ESMFold analysis to OpenFold and Boltz-1.</span></li>
             <li><span class="when">Feb 2026</span><span>Presented our protein folding work at the <a href="https://www.simonsfoundation.org/flatiron/" target="_blank" rel="noopener">Flatiron Institute</a>.</span></li>
             <li><span class="when">Sep 2025</span><span><span class="hl">NeurIPS</span><em>When Are Concepts Erased From Diffusion Models?</em> was accepted to the NeurIPS 2025 main track.</span></li>
@@ -375,6 +389,16 @@
       <div class="section-head"><h2>Publications &amp; Presentations</h2></div>
       <div id="pubs"></div>
       <script id="pubs-data" type="application/json">[
+        {
+          "title": "RumiFold: Teaching an LLM to Natively Fold Proteins and Reason About Their Function",
+          "authors": ["Kevin Lu", "David Bau", "Wengong Jin"],
+          "badge": "Preprint 2026",
+          "venue": "Preprint",
+          "paper": "https://rumifold.baulab.info/",
+          "video": "rumifold/chat.mp4",
+          "thumbnail": "rumifold/chat_poster.jpg",
+          "abstract": "Can we teach a general-purpose language model to fold proteins? We introduce RumiFold, a pretrained chat model that learns to predict protein structures directly from its own hidden states, then uses these folded representations to answer questions in natural language. It folds about as accurately as dedicated single-representation models such as SimpleFold, and reaches state-of-the-art performance on Gene Ontology function prediction and free-text function description. Folding organizes the model's hidden states around protein function, and causal interventions show that the model reads this folded workspace when it answers."
+        },
         {
           "title": "Two Stages of Folding: Convergent Mechanisms in AI Protein Folding Trunks",
           "authors": ["Kevin Lu", "Jannik Brinkmann", "Stefan Huber", "Aaron Mueller", "Yonatan Belinkov", "David Bau", "Chris Wendler"],
@@ -450,8 +474,11 @@
           .filter(([label, url]) => url && !(label === 'Project page' && url === p.code))
           .map(([label, url]) => `<a class="btn-link" href="${url}" target="_blank" rel="noopener">${label}</a>`)
           .join('');
+        const media = p.video
+          ? `<video src="${encodeURI(p.video)}" poster="${encodeURI(p.thumbnail || '')}" autoplay muted loop playsinline preload="metadata" aria-label="${p.title}"></video>`
+          : `<img src="${encodeURI(p.thumbnail || '')}" alt="" loading="lazy">`;
         const thumb = p.thumbnail
-          ? `<a class="thumb" href="${href || '#'}" target="_blank" rel="noopener"><img src="${encodeURI(p.thumbnail)}" alt="" loading="lazy"></a>`
+          ? `<a class="thumb" href="${href || '#'}" target="_blank" rel="noopener">${media}</a>`
           : '';
         const side = `<div class="entry-side">${p.badge ? `<span class="venue-tag">${p.badge}</span>` : ''}${thumb}</div>`;
         return `
